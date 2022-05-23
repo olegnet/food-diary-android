@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Дневник еды</string>
+    <string name="nav_bar_daily_list">Список</string>
+    <string name="nav_bar_add_to_daily_list">Добавить еду</string>
+    <string name="nav_bar_camera">Сканировать баркод</string>
+    <string name="nav_bar_camera_short">Баркод</string>
+    <string name="nav_bar_edit_food">Изменить еду</string>
+    <string name="nav_bar_settings">Настройки</string>
+
+    <string name="camera_permission_rationale">Разрешение на использование камеры необходимо для того,
+        чтобы можно было распознавать баркоды на упаковке еды. Без этого разрешения приложение не сможет получить
+        доступ к камере, но вы сможете пользоваться приложением, как дневником, без сканирования упаковки.</string>
+    <string name="ask_for_camera_permission">Разрешение на использование камеры нужно для того, чтобы можно было
+        распознавать баркоды на упаковке еды. Пожалуйста, разрешите приложению доступ к камере</string>
+    <string name="button_request_permission">Запросить разрешение</string>
+
+    <string name="header_today">Сегодня</string>
+    <string name="header_yesterday">Вчера</string>
+    <string name="header_tomorrow">Завтра</string>
+    <string name="header_arrow_back">Стрелка назад</string>
+    <string name="header_arrow_forward">Стрелка вперёд</string>
+    <string name="header_edit_food">Изменить еду</string>
+    <string name="header_new_food">Новая еда</string>
+    <string name="header_no_barcode">без баркода</string>
+    <string name="header_with_barcode">с баркодом %s</string>
+    <string name="header_units_100g">в 100 граммах</string>
+
+    <string name="label_name">Название</string>
+    <string name="label_calories">Калории, к</string>
+    <string name="label_carbs">Углеводы, г</string>
+    <string name="label_fat">Жиры, г</string>
+    <string name="label_protein">Белки, г</string>
+    <string name="label_weight">Вес еды, г</string>
+    <string name="label_search">Поиск</string>
+
+    <string name="button_add">Добавить</string>
+    <string name="button_save">Сохранить</string>
+    <string name="button_delete">Удалить</string>
+    <string name="button_edit">Редактировать</string>
+    <string name="button_clear_all">Очистить всё</string>
+    <string name="button_scan_barcode">Сканировать баркод</string>
+
+    <string name="message_internal_error">Внутренняя ошибка</string>
+    <string name="message_correct_error_and_save_again">Пожалуйста исправьте ошибку выше и нажмите Сохранить ещё раз</string>
+    <string name="message_fill_form_and_save_again">Пожалуйста заполните форму и нажмите Сохранить ещё раз</string>
+    <string name="message_database_error">Ошибка записи в базу данных %s</string>
+    <string name="message_cleared">Очистили</string>
+    <string name="message_deleted">Удалили</string>
+    <string name="message_saved">Сохранили</string>
+    <string name="message_no_food_added_yet">Можно добавить новую еду</string>
+    <string name="message_food_with_barcode_not_found">Еда с этим баркодом не найдена</string>
+
+    <string name="units_weight">%s г</string>
+    <string name="units_energy">%s к</string>
+
+</resources>

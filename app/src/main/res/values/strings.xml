@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Food diary</string>
+    <string name="nav_bar_daily_list">List</string>
+    <string name="nav_bar_add_to_daily_list">Add food</string>
+    <string name="nav_bar_camera">Scan barcode</string>
+    <string name="nav_bar_camera_short">Scan barcode</string>
+    <string name="nav_bar_edit_food">Edit food</string>
+    <string name="nav_bar_settings">Settings</string>
+
+    <string name="camera_permission_rationale">The camera is important for this app to scan barcodes. Please grant the permission</string>
+    <string name="ask_for_camera_permission">Camera permission is required to scan barcodes. Please grant the permission</string>
+    <string name="button_request_permission">Request permission</string>
+
+    <string name="header_today">Today</string>
+    <string name="header_yesterday">Yesterday</string>
+    <string name="header_tomorrow">Tomorrow</string>
+    <string name="header_arrow_back">Arrow back</string>
+    <string name="header_arrow_forward">Arrow forward</string>
+    <string name="header_edit_food">Edit food</string>
+    <string name="header_new_food">New food</string>
+    <string name="header_no_barcode">no barcode</string>
+    <string name="header_with_barcode">with barcode %s</string>
+    <string name="header_units_100g">per 100 grams</string>
+
+    <string name="label_name">Name</string>
+    <string name="label_calories">Calories, k</string>
+    <string name="label_carbs">Carbs, g</string>
+    <string name="label_fat">Fat, g</string>
+    <string name="label_protein">Protein, g</string>
+    <string name="label_weight">Food weight, g</string>
+    <string name="label_search">Search</string>
+
+    <string name="button_add">Add</string>
+    <string name="button_save">Save</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_clear_all">Clear All</string>
+    <string name="button_scan_barcode">Scan barcode</string>
+
+    <string name="message_internal_error">Internal error</string>
+    <string name="message_correct_error_and_save_again">Please correct error above and press Save button again</string>
+    <string name="message_fill_form_and_save_again">Please fill the form and press Save button again</string>
+    <string name="message_database_error">Error updating database record %s</string>
+    <string name="message_cleared">Cleared</string>
+    <string name="message_deleted">Deleted</string>
+    <string name="message_saved">Saved</string>
+    <string name="message_no_food_added_yet">You can add new food</string>
+    <string name="message_food_with_barcode_not_found">Food with barcode is not found</string>
+
+    <string name="units_weight">%s g</string>
+    <string name="units_energy">%s k</string>
+
+</resources>
