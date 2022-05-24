@@ -207,7 +207,7 @@ private fun DailyListScreenBody(
                     .fillMaxWidth()
                     .padding(top = 4.dp, bottom = 4.dp)
                     .background(
-                        shape = shapes.extraSmall,
+                        shape = shapes.small,
                         brush = SolidColor(colorScheme.inverseOnSurface),
                         alpha = 0.5f
                     )

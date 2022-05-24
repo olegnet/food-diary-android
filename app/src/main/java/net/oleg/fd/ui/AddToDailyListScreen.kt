@@ -102,12 +102,14 @@ fun AddToDailyListScreen(
                 .fillMaxWidth()
             val singleLine = true
             val textStyle = typography.bodyLarge
+            val shape = shapes.small
             if (barcode != null) {
                 OutlinedTextField(
                     modifier = modifier,
                     label = label,
                     singleLine = singleLine,
                     textStyle = textStyle,
+                    shape = shape,
                     value = TextFieldValue(
                         annotatedString = AnnotatedString(text = barcode, spanStyle = requestBarcodeSpanStyle()),
                         composition = TextRange(start = 0, end = barcode.length)
@@ -123,6 +125,7 @@ fun AddToDailyListScreen(
                     label = label,
                     singleLine = singleLine,
                     textStyle = textStyle,
+                    shape = shape,
                     value = searchString,
                     onValueChange = {
                         viewModel.setSearchBarcode(null)
@@ -194,7 +197,7 @@ fun AddToDailyListScreen(
                             .height(72.dp)      // FIXME line height(16.sp) x 2
                             .padding(top = 4.dp, bottom = 4.dp)
                             .background(
-                                shape = shapes.extraSmall,
+                                shape = shapes.small,
                                 brush = SolidColor(colorScheme.inverseOnSurface),
                                 alpha = 0.5f
                             )

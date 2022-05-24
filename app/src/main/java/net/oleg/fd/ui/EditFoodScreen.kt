@@ -134,7 +134,8 @@ fun EditFoodForm(
                     capitalization = KeyboardCapitalization.Sentences,
                     imeAction = ImeAction.Next
                 ),
-                textStyle = typography.bodyLarge
+                textStyle = typography.bodyLarge,
+                shape = shapes.small
             )
             Row(
                 modifier = Modifier
@@ -152,7 +153,8 @@ fun EditFoodForm(
                     label = { Text(stringResource(R.string.label_calories)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                    isError = energy.isError
+                    isError = energy.isError,
+                    shape = shapes.small
                 )
                 OutlinedTextField(
                     modifier = Modifier
@@ -164,7 +166,8 @@ fun EditFoodForm(
                     label = { Text(stringResource(R.string.label_carbs)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                    isError = carbs.isError
+                    isError = carbs.isError,
+                    shape = shapes.small
                 )
             }
 
@@ -184,7 +187,8 @@ fun EditFoodForm(
                     label = { Text(stringResource(R.string.label_fat)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                    isError = fat.isError
+                    isError = fat.isError,
+                    shape = shapes.small
                 )
                 OutlinedTextField(
                     modifier = Modifier
@@ -199,7 +203,8 @@ fun EditFoodForm(
                     keyboardActions = KeyboardActions(onNext = {
                         focusManager.clearFocus()
                     }),
-                    isError = protein.isError
+                    isError = protein.isError,
+                    shape = shapes.small
                 )
             }
         }

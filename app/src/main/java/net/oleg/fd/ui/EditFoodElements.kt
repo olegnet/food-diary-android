@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
+import androidx.compose.material3.MaterialTheme.shapes
+import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,8 +36,8 @@ fun NutritionInfo(
     protein: Float,
 ) {
     val borderWidth = 1.dp
-    val borderShape = MaterialTheme.shapes.extraSmall
-    val borderColor = MaterialTheme.colorScheme.outline
+    val borderShape = shapes.small
+    val borderColor = colorScheme.outline
 
     Row(
         modifier = Modifier
@@ -57,14 +59,14 @@ fun NutritionInfo(
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center),
                 text = stringResource(id = R.string.label_calories),
-                style = MaterialTheme.typography.bodyMedium,
+                style = typography.bodyMedium,
                 maxLines = 1
             )
             Text(
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center),
                 text = energy.printToForm(),
-                style = MaterialTheme.typography.bodyLarge,
+                style = typography.bodyLarge,
                 maxLines = 1
             )
         }
@@ -82,14 +84,14 @@ fun NutritionInfo(
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center),
                 text = stringResource(id = R.string.label_carbs),
-                style = MaterialTheme.typography.bodyMedium,
+                style = typography.bodyMedium,
                 maxLines = 1
             )
             Text(
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center),
                 text = carbs.printToForm(),
-                style = MaterialTheme.typography.bodyLarge,
+                style = typography.bodyLarge,
                 maxLines = 1
             )
         }
@@ -107,14 +109,14 @@ fun NutritionInfo(
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center),
                 text = stringResource(id = R.string.label_fat),
-                style = MaterialTheme.typography.bodyMedium,
+                style = typography.bodyMedium,
                 maxLines = 1
             )
             Text(
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center),
                 text = fat.printToForm(),
-                style = MaterialTheme.typography.bodyLarge,
+                style = typography.bodyLarge,
                 maxLines = 1
             )
         }
@@ -132,14 +134,14 @@ fun NutritionInfo(
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center),
                 text = stringResource(id = R.string.label_protein),
-                style = MaterialTheme.typography.bodyMedium,
+                style = typography.bodyMedium,
                 maxLines = 1
             )
             Text(
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center),
                 text = protein.printToForm(),
-                style = MaterialTheme.typography.bodyLarge,
+                style = typography.bodyLarge,
                 maxLines = 1
             )
         }
@@ -174,7 +176,8 @@ fun EditFoodWeightRow(
             onValueChange = { setFoodWeight(FloatFieldState(it)) },
             label = { Text(text = stringResource(id = R.string.label_weight)) },
             singleLine = true,
-            textStyle = MaterialTheme.typography.bodyLarge,
+            textStyle = typography.bodyLarge,
+            shape = shapes.small,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
             keyboardActions = KeyboardActions(onNext = { focusManager.clearFocus() }),
         )
