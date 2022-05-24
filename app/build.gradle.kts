@@ -68,12 +68,6 @@ android {
             matchingFallbacks.add("release")
             proguardFiles("benchmark-rules.pro")
         }
-        val staging by creating {
-            initWith(debug)
-            signingConfig = signingConfigs.getByName("debug")
-            matchingFallbacks.add("debug")
-            // applicationIdSuffix = ".staging"
-        }
     }
 
     compileOptions {
@@ -95,7 +89,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-beta01"
+        kotlinCompilerExtensionVersion = "1.2.0-beta02"
     }
 
     packagingOptions {
@@ -106,7 +100,7 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.2.0-beta02"
+    val composeVersion = "1.2.0-beta02" // same as in kotlinCompilerExtensionVersion
     val cameraxVersion = "1.2.0-alpha01"
     val navigationVersion = "2.4.2"
     val roomVersion = "2.5.0-alpha01"
@@ -132,6 +126,7 @@ dependencies {
 
     implementation("androidx.compose.material3:material3:$material3Version")
     implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
+    implementation("com.google.android.material:material:1.6.0")
 
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
