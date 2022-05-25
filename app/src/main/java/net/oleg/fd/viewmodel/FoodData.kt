@@ -3,7 +3,7 @@ package net.oleg.fd.viewmodel
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-const val divider = 100   // per 100 gram TODO
+const val divider = 100   // per 100 grams TODO
 
 @Parcelize
 data class FoodData(
@@ -49,27 +49,5 @@ data class FoodData(
 
         fun build(): FoodData =
             FoodData(id, unitId, name, barcode, energy, carbs, fat, protein)
-    }
-}
-
-@Parcelize
-data class FloatFieldState(
-    val value: String = "",
-    val isError: Boolean = isFloatFieldError(value),
-) : Parcelable {
-
-    constructor(value: Float?) : this(value = value?.toString() ?: "")
-
-    companion object {
-        private fun isFloatFieldError(value: String): Boolean {
-            if (value.trim().isEmpty()) {
-                return false
-            }
-            return try {
-                value.toFloat() <= 0
-            } catch (ex: NumberFormatException) {
-                true
-            }
-        }
     }
 }

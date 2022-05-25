@@ -8,7 +8,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import net.oleg.fd.MainActivity
-import net.oleg.fd.viewmodel.FoodViewModelMock
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,17 +17,11 @@ class UiTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-//    val composeTestRule = createComposeRule()
 
     private fun stringResource(@StringRes id: Int) = composeTestRule.activity.getString(id)
 
-    // FIXME
     @Test
     fun mainActivityScreen_clickTo_Edit_Test() {
-        composeTestRule.setContent {
-            MainActivityScreen(FoodViewModelMock)
-        }
-
         listOf(Screen.DailyList, Screen.AddToDailyList, Screen.EditFood, Screen.Camera).forEach {
             composeTestRule.onNodeWithContentDescription(stringResource(it.text))
                 .assertExists()

@@ -1,9 +1,11 @@
 package net.oleg.fd.viewmodel
 
-import junit.framework.TestCase.*
-import org.junit.Assert
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
 open class FoodDataTest {
 
     @Test
@@ -59,15 +61,5 @@ open class FoodDataTest {
         assertEquals("9.1", foodData.carbs!!.value)
         assertEquals("11.12", foodData.fat!!.value)
         assertEquals("13.14", foodData.protein!!.value)
-    }
-
-    @Test
-    fun floatFieldStateTest() {
-        assertEquals(FloatFieldState("a"), FloatFieldState("a", true))
-        assertEquals(FloatFieldState(1.1f), FloatFieldState("1.1", false))
-
-        assertTrue(FloatFieldState(0f).isError)
-        assertTrue(FloatFieldState(-1f).isError)
-        assertFalse(FloatFieldState(1f).isError)
     }
 }

@@ -236,10 +236,10 @@ fun EditFoodForm(
                                         foodItem?.id,
                                         name,
                                         barcode,
-                                        energy.value.toFloat(),
-                                        carbs.value.toFloat(),
-                                        fat.value.toFloat(),
-                                        protein.value.toFloat()
+                                        energy.toFloat(),
+                                        carbs.toFloat(),
+                                        fat.toFloat(),
+                                        protein.toFloat()
                                     )
                                     showMessage(R.string.message_saved)
                                 } catch (ex: Throwable) {

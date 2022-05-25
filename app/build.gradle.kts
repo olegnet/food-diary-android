@@ -60,7 +60,7 @@ android {
         val debug by getting {
             isMinifyEnabled = false
             signingConfig = signingConfigs.findByName("debug")
-            applicationIdSuffix = ".debug"
+            // applicationIdSuffix = ".debug"
         }
         val benchmark by creating {
             initWith(release)
@@ -95,6 +95,13 @@ android {
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+            isIncludeAndroidResources = true
         }
     }
 }
@@ -163,10 +170,13 @@ dependencies {
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.mockito:mockito-core:4.5.1")
     testImplementation("org.hamcrest:hamcrest-library:2.2")
+    testImplementation("org.robolectric:robolectric:4.8")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0") {
+        exclude(module = "protobuf-lite")
+    }
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
     androidTestImplementation("androidx.navigation:navigation-testing:$navigationVersion")
 }

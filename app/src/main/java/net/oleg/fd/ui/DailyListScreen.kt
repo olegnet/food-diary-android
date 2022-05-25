@@ -266,7 +266,7 @@ private fun DailyListScreenBody(
                 val selectedFoodDiaryItem = selectedFoodDiaryView!!.foodDiaryItem
                 EditFoodWeightRow(
                     foodItem = foodItem,
-                    weight = selectedFoodDiaryItem.weight.printToEditForm(),
+                    weight = selectedFoodDiaryItem.weight,
                     secondaryActionButton = {
                         DeleteIconButton {
                             // FIXME Add "are you sure?" question or snackbar with undo

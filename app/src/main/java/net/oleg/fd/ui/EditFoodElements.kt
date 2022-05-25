@@ -151,12 +151,12 @@ fun NutritionInfo(
 @Composable
 fun EditFoodWeightRow(
     foodItem: FoodItem,
-    weight: String? = null,
+    weight: Float? = null,
     secondaryActionButton: (@Composable () -> Unit)? = null,
     onClick: (weight: Float) -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
-    val (foodWeight, setFoodWeight) = rememberSaveable { mutableStateOf(FloatFieldState(weight ?: "")) }
+    val (foodWeight, setFoodWeight) = rememberSaveable { mutableStateOf(FloatFieldState(weight, 0)) }
 
     NutritionInfo(foodItem.energy, foodItem.carbs!!, foodItem.fat!!, foodItem.protein!!)
 
@@ -189,7 +189,7 @@ fun EditFoodWeightRow(
                 .padding(horizontal = 4.dp),
             onClick = {
                 if (!foodWeight.isError && foodWeight.value.isNotEmpty()) {
-                    onClick(foodWeight.value.toFloat())
+                    onClick(foodWeight.toFloat())
                 } // else FIXME show error
             }
         ) {
