@@ -88,8 +88,10 @@ interface FoodDao {
     suspend fun getFood(id: Long): FoodItem?
 
     @Query(
-        "SELECT SUM(food_item.energy) energy, SUM(food_item.carbs) carbs, " +
-                "SUM(food_item.fat) fat, SUM(food_item.protein) protein " +
+        "SELECT SUM(food_item.energy * food_diary.diary_weight) AS energy, " +
+                "SUM(food_item.carbs * food_diary.diary_weight) AS carbs, " +
+                "SUM(food_item.fat * food_diary.diary_weight) AS fat, " +
+                "SUM(food_item.protein * food_diary.diary_weight) AS protein " +
                 "FROM food_item " +
                 "INNER JOIN food_diary ON food_diary.diary_item_id = food_item.item_id " +
                 "WHERE food_diary.diary_date BETWEEN :startDate AND :endDate"
