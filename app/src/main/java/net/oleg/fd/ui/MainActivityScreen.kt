@@ -52,6 +52,9 @@ sealed class Screen(val route: String, val icon: ImageVector, @StringRes val tex
     object AddToDailyList : Screen("add-to-daily-list", Icons.Filled.AddComment, R.string.nav_bar_add_to_daily_list)
     object EditFood : Screen("add-or-edit-food", Icons.Filled.Edit, R.string.nav_bar_edit_food)
     object Camera : Screen("camera", Icons.Filled.Camera, R.string.nav_bar_camera_short)
+
+    // not a real screen. used in viewmodel.cameraReturnPath
+    object Barcode: Screen("barcode", Icons.Filled.Camera, R.string.nav_bar_camera_short)
 }
 
 fun NavHostController.navigate(screen: Screen) {
@@ -89,9 +92,14 @@ fun MainActivityScreen(
                             selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                             onClick = {
                                 if (screen == Screen.Camera) {
-                                    viewModel.setCameraReturnPath(Screen.Camera)
+                                    // if current screen is the camera screen, set return path to Barcode
+                                    // as a flag to process it later when barcode is ready
+                                    viewModel.setCameraReturnPath(Screen.Barcode)
                                 }
-                                navController.navigate(screen)
+                                // looks a bit better and fixes bug with the camera screen
+                                if (currentDestination?.route != screen.route) {
+                                    navController.navigate(screen)
+                                }
                             }
                         )
                     }

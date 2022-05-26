@@ -43,7 +43,6 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.NavHostController
 import com.google.common.util.concurrent.ListenableFuture
 import kotlinx.coroutines.launch
-import net.oleg.fd.BuildConfig
 import net.oleg.fd.MainActivity
 import net.oleg.fd.R
 import net.oleg.fd.barcode.BarCodeAnalyzer
@@ -106,7 +105,7 @@ fun CameraPreview(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .scale(2.0f),   // TODO replace ic_view_port.xml
+                .scale(2.0f),
             contentAlignment = Alignment.Center
         ) {
             Icon(painter = painterResource(R.drawable.ic_view_port), contentDescription = null)
@@ -156,7 +155,8 @@ private fun bindView(
                     viewModel.setSearchBarcode(barcode)
                     navController.navigate(screen)
                 }
-                Screen.Camera -> {
+                Screen.Barcode -> {
+                    // not a real return path. using it as a flag to return to one of the two screens
                     if (viewModel.getFood(barcode) != null) {
                         viewModel.setSelectedFoodItem(null)
                         viewModel.setSearchString(null)
@@ -175,14 +175,7 @@ private fun bindView(
 
     val cameraProvider = cameraProviderFuture.get()
     cameraProvider.unbindAll()
-
-    val camera = cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, preview, imageAnalyzer)
-
-    if (BuildConfig.DEBUG) {
-        camera.cameraInfo.cameraState.observe(lifecycleOwner) { cameraState ->
-            Timber.d("cameraState: type=${cameraState.type} error=${cameraState.error}")
-        }
-    }
+    cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, preview, imageAnalyzer)
 }
 
 @Preview(showBackground = true)
