@@ -47,6 +47,10 @@ class FoodRepository(
         foodDao.markFoodItemAsDeleted(id)
     }
 
+    suspend fun markFoodItemAsNotDeleted(id: Long) {
+        foodDao.markFoodItemAsNotDeleted(id)
+    }
+
     suspend fun updateFoodItemDate(id: Long) {
         foodDao.updateFoodItemDate(id)
     }

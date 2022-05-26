@@ -36,6 +36,7 @@
     <string name="button_edit">Edit</string>
     <string name="button_clear_all">Clear All</string>
     <string name="button_scan_barcode">Scan barcode</string>
+    <string name="button_undo">Undo</string>
 
     <string name="message_internal_error">Internal error</string>
     <string name="message_correct_error_and_save_again">Please correct error above and press Save button again</string>
@@ -43,6 +44,7 @@
     <string name="message_database_error">Error updating database record %s</string>
     <string name="message_cleared">Cleared</string>
     <string name="message_deleted">Deleted</string>
+    <string name="message_restored">Restored</string>
     <string name="message_saved">Saved</string>
     <string name="message_no_food_added_yet">You can add new food</string>
     <string name="message_food_with_barcode_not_found">Food with barcode is not found</string>

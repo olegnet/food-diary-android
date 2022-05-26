@@ -72,10 +72,12 @@ interface FoodViewModel {
         protein: Float?,
     ): Job
     suspend fun markFoodItemAsDeleted(id: Long): Job
+    suspend fun markFoodItemAsNotDeleted(id: Long): Job
     fun getFoodItems(foodDataRequest: FoodDataRequest?): PagingSource<Int, FoodItem>
     fun getAnyFoodItem(): LiveData<FoodItem>
     fun getFoodAsLiveData(id: Long): LiveData<FoodItem>
     fun getFoodAsLiveData(barcode: String): LiveData<FoodItem>
+    suspend fun getFood(id: Long): FoodItem?
     suspend fun getFood(barcode: String): FoodItem?
     fun getFoodDiarySum(calendar: Calendar): LiveData<FoodDiarySum>
     fun getFoodDiary(calendar: Calendar): PagingSource<Int, FoodDiaryView>

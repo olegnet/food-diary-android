@@ -197,6 +197,11 @@ class FoodViewModelImpl(
             repository.markFoodItemAsDeleted(id)
         }
 
+    override suspend fun markFoodItemAsNotDeleted(id: Long) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.markFoodItemAsNotDeleted(id)
+        }
+
     override fun getFoodItems(foodDataRequest: FoodDataRequest?): PagingSource<Int, FoodItem> =
         when {
             foodDataRequest?.search != null ->
@@ -218,6 +223,9 @@ class FoodViewModelImpl(
 
     override suspend fun getFood(barcode: String): FoodItem? =
         repository.getFood(barcode)
+
+    override suspend fun getFood(id: Long): FoodItem? =
+        repository.getFood(id)
 
     override fun getFoodDiarySum(calendar: Calendar): LiveData<FoodDiarySum> =
         repository.getFoodDiarySum(getStartOfDay(calendar), getEndOfDay(calendar)).asLiveData()

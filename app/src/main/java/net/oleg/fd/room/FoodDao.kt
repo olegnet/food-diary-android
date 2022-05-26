@@ -70,6 +70,12 @@ interface FoodDao {
     suspend fun markFoodItemAsDeleted(id: Long)
 
     @Query("UPDATE food_item " +
+            "SET item_is_deleted = 0 " +
+            "WHERE item_id = :id"
+    )
+    suspend fun markFoodItemAsNotDeleted(id: Long)
+
+    @Query("UPDATE food_item " +
             "SET item_date = CURRENT_TIMESTAMP " +
             "WHERE item_id = :id"
     )

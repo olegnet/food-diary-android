@@ -69,14 +69,16 @@ fun EditFoodForm(
     val (snackbarMessage, setSnackbarMessage) = remember { mutableStateOf(R.string.message_internal_error) }
     val (snackbarMessageArg, setSnackbarMessageArg) = remember { mutableStateOf<String?>(null) }
     val (isError, setError) = remember { mutableStateOf(false) }
+    val (undoId, setUndoId) = remember { mutableStateOf<Long?>(null) }
 
-    fun showMessage(@StringRes id: Int, arg: String? = null, isError: Boolean = false) =
+    fun showMessage(@StringRes id: Int, arg: String? = null, isError: Boolean = false, undoId: Long? = null) =
         currentScope.launch {
             snackbarHostState.currentSnackbarData?.dismiss()
             setError(isError)
             setSnackbarMessage(id)
             setSnackbarMessageArg(arg)
-            snackbarHostState.showSnackbar(message = "")
+            setUndoId(undoId)
+            snackbarHostState.showSnackbar(message = "", duration = SnackbarDuration.Long)
         }
 
     fun showErrorMessage(@StringRes id: Int, arg: String? = null) =
@@ -122,8 +124,10 @@ fun EditFoodForm(
                 style = typography.headlineLarge
             )
             Text(
-                text = if (barcode != null) stringResource(R.string.header_with_barcode,
-                    barcode) else stringResource(R.string.header_no_barcode),
+                text = if (barcode != null) stringResource(
+                    R.string.header_with_barcode,
+                    barcode
+                ) else stringResource(R.string.header_no_barcode),
                 style = typography.bodyMedium
             )
             Text(
@@ -306,11 +310,10 @@ fun EditFoodForm(
                         .fillMaxWidth()
                         .padding(paddingValues = buttonPaddings),
                     onClick = {
-                        // FIXME add question or undo
                         currentScope.launch {
                             viewModel.markFoodItemAsDeleted(foodItem.id)
                             viewModel.clearFoodData()
-                            showMessage(R.string.message_deleted)
+                            showMessage(R.string.message_deleted, undoId = foodItem.id)
                         }
                     }
                 ) {
@@ -339,14 +342,39 @@ fun EditFoodForm(
                 } else {
                     stringResource(id = snackbarMessage)
                 }
-                Text(
+                Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp),
-                    text = text,
-                    style = typography.bodyMedium,
-                    color = if (isError) colorScheme.error else colorScheme.primary
-                )
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f)
+                            .padding(12.dp),
+                        text = text,
+                        style = typography.bodyMedium,
+                        color = if (isError) colorScheme.error else colorScheme.primary
+                    )
+                    if (undoId != null) {
+                        Button(
+                            modifier = Modifier
+                                .wrapContentWidth()
+                                .padding(horizontal = 4.dp),
+                            onClick = {
+                                currentScope.launch {
+                                    viewModel.markFoodItemAsNotDeleted(undoId).join()
+                                    val restoredFoodItem = viewModel.getFood(undoId)
+                                    viewModel.setFoodData(restoredFoodItem!!)
+                                    showMessage(R.string.message_restored)
+                                }
+                            }
+                        ) {
+                            Text(text = stringResource(id = R.string.button_undo))
+                        }
+                    }
+                }
             }
         }
     }

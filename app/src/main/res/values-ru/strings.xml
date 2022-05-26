@@ -39,6 +39,7 @@
     <string name="button_edit">Редактировать</string>
     <string name="button_clear_all">Очистить всё</string>
     <string name="button_scan_barcode">Сканировать баркод</string>
+    <string name="button_undo">Отменить</string>
 
     <string name="message_internal_error">Внутренняя ошибка</string>
     <string name="message_correct_error_and_save_again">Пожалуйста исправьте ошибку выше и нажмите Сохранить ещё раз</string>
@@ -46,6 +47,7 @@
     <string name="message_database_error">Ошибка записи в базу данных %s</string>
     <string name="message_cleared">Очистили</string>
     <string name="message_deleted">Удалили</string>
+    <string name="message_restored">Восстановили</string>
     <string name="message_saved">Сохранили</string>
     <string name="message_no_food_added_yet">Можно добавить новую еду</string>
     <string name="message_food_with_barcode_not_found">Еда с этим баркодом не найдена</string>
