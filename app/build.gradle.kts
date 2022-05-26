@@ -60,7 +60,7 @@ android {
         val debug by getting {
             isMinifyEnabled = false
             signingConfig = signingConfigs.findByName("debug")
-            // applicationIdSuffix = ".debug"
+            applicationIdSuffix = ".debug"
         }
         val benchmark by creating {
             initWith(release)
