@@ -23,3 +23,11 @@ Enjoy
     See the License for the specific language governing permissions and
     limitations under the License.
 
+## Icon
+
+    An emoji called "pot of food" has been used for the app's icon and 
+    it is licensed under the open source "Creative Commons Attribution 4.0 
+    International" license.
+    
+    https://iconduck.com/emojis/15973/pot-of-food
+
