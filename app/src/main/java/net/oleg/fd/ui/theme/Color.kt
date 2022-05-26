@@ -36,7 +36,6 @@ val md_theme_light_outline = Color(0xFF707973)
 val md_theme_light_inverseOnSurface = Color(0xFFeff1ed)
 val md_theme_light_inverseSurface = Color(0xFF2d312e)
 val md_theme_light_inversePrimary = Color(0xFF6cdbac)
-val md_theme_light_shadow = Color(0xFF000000)
 
 val md_theme_dark_primary = Color(0xFF6cdbac)
 val md_theme_dark_onPrimary = Color(0xFF003825)
@@ -61,13 +60,9 @@ val md_theme_dark_onSurface = Color(0xFFe1e3df)
 val md_theme_dark_surfaceVariant = Color(0xFF404943)
 val md_theme_dark_onSurfaceVariant = Color(0xFFc0c9c2)
 val md_theme_dark_outline = Color(0xFF89938c)
-val md_theme_dark_inverseOnSurface = Color(0xFF191c1a)
+val md_theme_dark_inverseOnSurface = Color(0xFF333A35)
 val md_theme_dark_inverseSurface = Color(0xFFe1e3df)
 val md_theme_dark_inversePrimary = Color(0xFF006c4a)
-val md_theme_dark_shadow = Color(0xFF000000)
-
-val seed = Color(0xFF37a97e)
-val error = Color(0xFFba1b1b)
 
 @Composable
 fun invertedButtonColors(): ButtonColors =
