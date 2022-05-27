@@ -37,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -132,7 +133,7 @@ fun AddToDailyListScreen(
                     ),
                     onValueChange = {
                         clearSearchAndSelected()
-                        // FIXME keyboard behavior
+                        focusManager.moveFocus(FocusDirection.Up)
                     },
                 )
             } else {
