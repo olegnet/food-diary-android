@@ -298,7 +298,7 @@ fun EditFoodForm(
                 Icon(
                     modifier = Modifier.padding(end = 4.dp),
                     imageVector = Icons.Filled.Camera,
-                    contentDescription = null
+                    contentDescription = stringResource(id = R.string.button_scan_barcode)
                 )
                 Text(text = stringResource(id = R.string.button_scan_barcode))
             }
@@ -321,7 +321,7 @@ fun EditFoodForm(
                         modifier = Modifier
                             .padding(end = 4.dp),
                         imageVector = Icons.Filled.Delete,
-                        contentDescription = null
+                        contentDescription = stringResource(id = R.string.button_delete)
                     )
                     Text(text = stringResource(id = R.string.button_delete))
                 }

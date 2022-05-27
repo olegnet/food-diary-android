@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
@@ -108,7 +109,10 @@ fun CameraPreview(
                 .scale(2.0f),
             contentAlignment = Alignment.Center
         ) {
-            Icon(painter = painterResource(R.drawable.ic_view_port), contentDescription = null)
+            Icon(
+                painter = painterResource(R.drawable.ic_view_port),
+                contentDescription = stringResource(id = R.string.button_scan_barcode)
+            )
         }
     }
 }
