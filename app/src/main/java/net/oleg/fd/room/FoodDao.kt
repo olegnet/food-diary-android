@@ -110,7 +110,7 @@ interface FoodDao {
     suspend fun getFood(id: Long): FoodItem?
 
     @Query(
-        "SELECT SUM(food_item.energy * food_diary.diary_weight) AS energy, " +
+        "SELECT COUNT(*) AS count, SUM(food_item.energy * food_diary.diary_weight) AS energy, " +
                 "SUM(food_item.carbs * food_diary.diary_weight) AS carbs, " +
                 "SUM(food_item.fat * food_diary.diary_weight) AS fat, " +
                 "SUM(food_item.protein * food_diary.diary_weight) AS protein " +

@@ -19,6 +19,9 @@ package net.oleg.fd.room
 import androidx.room.ColumnInfo
 
 data class FoodDiarySum(
+    @ColumnInfo(name = "count")
+    val count: Long,
+
     @ColumnInfo(name = "energy", typeAffinity = ColumnInfo.REAL)
     val energy: Float,
 

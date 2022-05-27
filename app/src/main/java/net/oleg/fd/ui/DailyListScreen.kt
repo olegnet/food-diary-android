@@ -81,7 +81,7 @@ fun DailyListScreen(
             (dailySums?.protein ?: 0f) / divider
         )
 
-        if (dailySums?.energy == 0f) {
+        if (dailySums?.count == 0L) {
             val anyFood by viewModel.getAnyFoodItem().observeAsState()
 
             NoFoodColumn(

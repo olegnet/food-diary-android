@@ -119,7 +119,8 @@ object FoodViewModelMock : FoodViewModel {
     override suspend fun getFood(barcode: String): FoodItem? = null
     override suspend fun getFood(id: Long): FoodItem? = null
 
-    override fun getFoodDiarySum(calendar: Calendar) = MutableLiveData(FoodDiarySum(1f, 2f, 3f, 4f))
+    override fun getFoodDiarySum(calendar: Calendar) =
+        MutableLiveData(FoodDiarySum(1, 1f, 2f, 3f, 4f))
     override fun getFoodDiary(calendar: Calendar): PagingSource<Int, FoodDiaryView> =
         object : PagingSource<Int, FoodDiaryView>() {
             override fun getRefreshKey(state: PagingState<Int, FoodDiaryView>): Int? = null
