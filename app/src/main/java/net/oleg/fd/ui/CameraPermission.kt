@@ -19,10 +19,7 @@
 package net.oleg.fd.ui
 
 import android.Manifest
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +27,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -46,8 +44,8 @@ fun CameraAskForPermission(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 4.dp, end = 4.dp, top = 8.dp),
-        verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.Start
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val message = if (cameraPermissionState.status.shouldShowRationale) {
             R.string.camera_permission_rationale
@@ -59,9 +57,11 @@ fun CameraAskForPermission(
         }
 
         Text(
-            text = stringResource(message),
             modifier = Modifier
-                .padding(bottom = 16.dp, start = 8.dp, end = 8.dp, top = 8.dp)
+                .fillMaxWidth()
+                .padding(bottom = 16.dp, start = 8.dp, end = 8.dp, top = 8.dp),
+            text = stringResource(id = message),
+            textAlign = TextAlign.Center
         )
 
         Button(
@@ -72,7 +72,7 @@ fun CameraAskForPermission(
                 cameraPermissionState.launchPermissionRequest()
             }
         ) {
-            Text(stringResource(R.string.button_request_permission))
+            Text(text = stringResource(id = R.string.button_request_permission))
         }
     }
 }
