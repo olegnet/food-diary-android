@@ -4,6 +4,8 @@
 Designed to be very simple in architecture and UX, and fast. The application is open source and without any spying functionality
 (except Google Crashlytics but you can comment it out yourself in your own builds)
 
+You can try it here https://play.google.com/apps/testing/net.oleg.fd
+
 Enjoy
 
 
