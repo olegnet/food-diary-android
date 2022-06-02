@@ -31,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -88,7 +89,11 @@ fun MainActivityScreen(
                     navBarItems.forEach { screen ->
                         NavigationBarItem(
                             icon = { Icon(screen.icon, contentDescription = stringResource(screen.text)) },
-                            label = { Text(stringResource(id = screen.text)) },
+                            label = { Text(
+                                text = stringResource(id = screen.text),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            ) },
                             selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                             onClick = {
                                 if (screen == Screen.Camera) {
