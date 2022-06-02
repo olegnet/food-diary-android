@@ -104,6 +104,7 @@ fun FoodDiaryTheme(
     if (!view.isInEditMode) {
         SideEffect {
             (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
+            @Suppress("DEPRECATION")    // FIXME
             ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
         }
     }

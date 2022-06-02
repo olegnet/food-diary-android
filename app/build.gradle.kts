@@ -89,7 +89,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-beta02"
+        kotlinCompilerExtensionVersion = "1.2.0-beta03"
     }
 
     packagingOptions {
@@ -107,16 +107,16 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.2.0-beta02" // same as in kotlinCompilerExtensionVersion
+    val composeVersion = "1.2.0-beta03" // same as in kotlinCompilerExtensionVersion
     val cameraxVersion = "1.2.0-alpha01"
     val navigationVersion = "2.4.2"
     val roomVersion = "2.5.0-alpha01"
-    val material3Version = "1.0.0-alpha12"
-    val lifecycleVersion = "2.4.1"
+    val material3Version = "1.0.0-alpha13"
+    val lifecycleVersion = "2.5.0-rc01"
 
-    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.activity:activity-compose:1.4.0")
-    implementation("com.google.android.material:material:1.6.0")
+    implementation("com.google.android.material:material:1.6.1")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
