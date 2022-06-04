@@ -57,7 +57,7 @@ class DailyListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = FoodListAdapter { _, foodDiaryView ->
+        val adapter = DailyListAdapter { _, foodDiaryView ->
             if (foodDiaryView == selectedFoodDiaryView) {
                 viewModel.setSelectedFoodDiaryView(null)
             } else {

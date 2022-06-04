@@ -25,25 +25,25 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import net.oleg.fd.R
 import net.oleg.fd.room.FoodDiaryView
-import net.oleg.fd.ui.FoodListAdapter.FoodListViewHolder
+import net.oleg.fd.ui.DailyListAdapter.DailyListViewHolder
 import net.oleg.fd.viewmodel.divider
 
-class FoodListAdapter(
+class DailyListAdapter(
     private val onItemClicked: (position: Int, foodDiaryView: FoodDiaryView) -> Unit,
-) : PagingDataAdapter<FoodDiaryView, FoodListViewHolder>(COMPARATOR) {
+) : PagingDataAdapter<FoodDiaryView, DailyListViewHolder>(COMPARATOR) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyListViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.daily_list_recyclerview_item, parent, false)
-        return FoodListViewHolder(view, onItemClicked)
+        return DailyListViewHolder(view, onItemClicked)
     }
 
-    override fun onBindViewHolder(holder: FoodListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DailyListViewHolder, position: Int) {
         val current = getItem(position)!!   // FIXME !!
         holder.bind(current)
     }
 
-    class FoodListViewHolder(
+    class DailyListViewHolder(
         itemView: View,
         private val onItemClicked: (position: Int, foodDiaryView: FoodDiaryView) -> Unit,
     ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
