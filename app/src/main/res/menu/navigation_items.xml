@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_daily_list"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="@string/nav_bar_daily_list" />
+    <item
+        android:id="@+id/action_add_to_daily_list"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/nav_bar_add_to_daily_list" />
+    <item
+        android:id="@+id/action_add_or_edit_food"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/nav_bar_edit_food" />
+    <item
+        android:id="@+id/action_camera"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="@string/nav_bar_camera_short" />
+</menu>

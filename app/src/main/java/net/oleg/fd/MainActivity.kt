@@ -16,25 +16,40 @@
 
 package net.oleg.fd
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import net.oleg.fd.ui.MainActivityScreen
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.navigation.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import net.oleg.fd.databinding.ActivityMainBinding
 import net.oleg.fd.viewmodel.FoodViewModel
 import net.oleg.fd.viewmodel.FoodViewModelFactory
+import javax.inject.Inject
 
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
-    private val viewModel: FoodViewModel by viewModels {
-        FoodViewModelFactory((application as FoodApplication).repository)
-    }
+    @Inject
+    lateinit var viewModelFactory: FoodViewModelFactory
+    val viewModel: FoodViewModel by viewModels { viewModelFactory }
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
-        setContent {
-            MainActivityScreen(viewModel)
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.navigationBar.setOnItemSelectedListener { false }   // FIXME
+
+        findNavController(R.id.nav_host_fragment_content_main)
+            .navigate(R.id.DailyListFragment)
     }
 }
+
+fun Activity?.viewModel(): FoodViewModel =
+    (this as MainActivity).viewModel

@@ -18,14 +18,11 @@ package net.oleg.fd
 
 import android.app.Application
 import android.os.StrictMode
-import net.oleg.fd.room.FoodDatabase
-import net.oleg.fd.room.FoodRepository
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
 class FoodApplication : Application() {
-
-    private val database by lazy { FoodDatabase.getDatabase(this) }
-    val repository by lazy { FoodRepository(database.foodDao()) }
 
     override fun onCreate() {
         if (BuildConfig.DEBUG) {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/DailyListFragment">
+
+    <fragment
+        android:id="@+id/DailyListFragment"
+        android:name="net.oleg.fd.ui.DailyListFragment"
+        android:label="@string/nav_bar_daily_list"
+        tools:layout="@layout/fragment_daily_list" />
+
+
+<!--
+    <fragment
+        android:id="@+id/ListNotesFragment"
+        android:name="net.oleg.n8.ui.ListNotesFragment"
+        android:label="@string/fragment_list_notes_label"
+        tools:layout="@layout/fragment_list_notes">
+
+        <action
+            android:id="@+id/action_show_or_update_note"
+            app:destination="@id/ShowNoteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ShowNoteFragment"
+        android:name="net.oleg.n8.ui.ShowNoteFragment"
+        android:label="@string/fragment_show_note_label"
+        tools:layout="@layout/fragment_show_note" />
+
+    <fragment
+        android:id="@+id/GoogleSignInFragment"
+        android:name="net.oleg.n8.ui.GoogleSignInFragment"
+        android:label="@string/fragment_google_auth"
+        tools:layout="@layout/fragment_google_auth" />
+
+    <action
+        android:id="@+id/action_sign_in"
+        app:destination="@id/GoogleSignInFragment" />-->
+
+</navigation>

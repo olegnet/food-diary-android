@@ -14,26 +14,17 @@
  * limitations under the License.
  */
 
-package net.oleg.fd.ui
+package net.oleg.fd.viewmodel
 
-import androidx.paging.PagingConfig
-import net.oleg.fd.room.FoodItem
+import androidx.annotation.StringRes
+import net.oleg.fd.R
 
-val pagingConfig =
-    PagingConfig(
-        pageSize = 60,
-        enablePlaceholders = true,
-        maxSize = 200
-    )
+sealed class Screen(val route: String, @StringRes val text: Int) {
+    object DailyList : Screen("daily-list", R.string.nav_bar_daily_list)
+    object AddToDailyList : Screen("add-to-daily-list", R.string.nav_bar_add_to_daily_list)
+    object EditFood : Screen("add-or-edit-food", R.string.nav_bar_edit_food)
+    object Camera : Screen("camera", R.string.nav_bar_camera_short)
 
-val foodItemDummy = FoodItem(
-    id = 0,
-    name = "",
-    barcode = null,
-    date = null,
-    energy = 0f,
-    carbs = 0f,
-    fat = 0f,
-    protein = 0f,
-    itemIsDeleted = false
-)
+    // not a real screen. used in viewmodel.cameraReturnPath
+    object Barcode: Screen("barcode", R.string.nav_bar_camera_short)
+}

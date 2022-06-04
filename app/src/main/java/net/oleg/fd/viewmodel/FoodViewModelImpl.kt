@@ -17,11 +17,12 @@
 package net.oleg.fd.viewmodel
 
 import androidx.lifecycle.*
-import androidx.paging.PagingSource
+import androidx.paging.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import net.oleg.fd.room.*
-import net.oleg.fd.ui.Screen
+import net.oleg.fd.ui.pagingConfig
 import java.util.*
 
 class FoodViewModelImpl(
@@ -230,8 +231,14 @@ class FoodViewModelImpl(
     override fun getFoodDiarySum(calendar: Calendar): LiveData<FoodDiarySum> =
         repository.getFoodDiarySum(getStartOfDay(calendar), getEndOfDay(calendar)).asLiveData()
 
-    override fun getFoodDiary(calendar: Calendar): PagingSource<Int, FoodDiaryView> =
-        repository.getFoodDiary(getStartOfDay(calendar), getEndOfDay(calendar))
+    override fun getFoodDiary(calendar: Calendar): Flow<PagingData<FoodDiaryView>> {
+        return Pager(
+            config = pagingConfig,
+            pagingSourceFactory = { repository.getFoodDiary(getStartOfDay(calendar), getEndOfDay(calendar)) }
+        )
+            .flow
+            .cachedIn(viewModelScope)
+    }
 
     override fun insertFoodDiaryItem(foodDiaryItem: FoodDiaryItem) =
         viewModelScope.launch(Dispatchers.IO) {

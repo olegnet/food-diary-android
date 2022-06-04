@@ -17,13 +17,14 @@
 package net.oleg.fd.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import net.oleg.fd.room.FoodDiaryItem
 import net.oleg.fd.room.FoodDiarySum
 import net.oleg.fd.room.FoodDiaryView
 import net.oleg.fd.room.FoodItem
-import net.oleg.fd.ui.Screen
 import java.util.*
 
 interface FoodViewModel {
@@ -80,7 +81,7 @@ interface FoodViewModel {
     suspend fun getFood(id: Long): FoodItem?
     suspend fun getFood(barcode: String): FoodItem?
     fun getFoodDiarySum(calendar: Calendar): LiveData<FoodDiarySum>
-    fun getFoodDiary(calendar: Calendar): PagingSource<Int, FoodDiaryView>
+    fun getFoodDiary(calendar: Calendar): Flow<PagingData<FoodDiaryView>>
     fun insertFoodDiaryItem(foodDiaryItem: FoodDiaryItem): Job
     fun updateFoodDiaryItem(foodDiaryItem: FoodDiaryItem): Job
     fun deleteFoodDiaryItem(foodDiaryItem: FoodDiaryItem): Job

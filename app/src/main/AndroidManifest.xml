@@ -21,8 +21,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.FoodDiary">
+            android:exported="true">
+<!--            android:theme="@style/Theme.FoodDiary"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

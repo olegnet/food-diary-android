@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
@@ -77,7 +78,7 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        allWarningsAsErrors = true
+//        allWarningsAsErrors = true
         freeCompilerArgs = freeCompilerArgs + ("-opt-in=kotlin.RequiresOptIn," +
                 "com.google.accompanist.permissions.ExperimentalPermissionsApi," +
                 "androidx.compose.material3.ExperimentalMaterial3Api")
@@ -85,12 +86,12 @@ android {
 
     buildFeatures {
         viewBinding = true
-        compose = true
+//        compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-beta03"
-    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.2.0-beta03"
+//    }
 
     packagingOptions {
         resources {
@@ -107,35 +108,41 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.2.0-beta03" // same as in kotlinCompilerExtensionVersion
+    //    val composeVersion = "1.2.0-beta03" // same as in kotlinCompilerExtensionVersion
     val cameraxVersion = "1.2.0-alpha01"
     val navigationVersion = "2.4.2"
     val roomVersion = "2.5.0-alpha01"
     val material3Version = "1.0.0-alpha13"
-    val lifecycleVersion = "2.5.0-rc01"
+    val lifecycleVersion = "2.4.1"
 
     implementation("androidx.core:core-ktx:1.8.0")
-    implementation("androidx.activity:activity-compose:1.4.0")
+    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.6.1")
+//    implementation("androidx.activity:activity-compose:1.4.0")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+//    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
 
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation("androidx.compose.foundation:foundation:$composeVersion")
-    implementation("androidx.compose.runtime:runtime-livedata:$composeVersion")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.material:material-icons-core:$composeVersion")
-    implementation("androidx.compose.material:material-icons-extended:$composeVersion")
+//    implementation("androidx.compose.ui:ui:$composeVersion")
+//    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+//    implementation("androidx.compose.foundation:foundation:$composeVersion")
+//    implementation("androidx.compose.runtime:runtime-livedata:$composeVersion")
+//    implementation("androidx.compose.material:material:$composeVersion")
+//    implementation("androidx.compose.material:material-icons-core:$composeVersion")
+//    implementation("androidx.compose.material:material-icons-extended:$composeVersion")
 
-    implementation("androidx.compose.material3:material3:$material3Version")
-    implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
+    implementation("androidx.activity:activity-ktx:1.4.0")
+    implementation("androidx.fragment:fragment-ktx:1.4.1")
+
+//    implementation("androidx.compose.material3:material3:$material3Version")
+//    implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
 
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
-    implementation("androidx.navigation:navigation-compose:$navigationVersion")
+//    implementation("androidx.navigation:navigation-compose:$navigationVersion")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
 
     implementation(platform("com.google.firebase:firebase-bom:30.0.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
@@ -149,7 +156,8 @@ dependencies {
     implementation("androidx.room:room-paging:$roomVersion")
 
     implementation("androidx.paging:paging-common-ktx:3.1.1")
-    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
+    implementation("androidx.paging:paging-runtime-ktx:3.1.1")
+//    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
 
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
@@ -158,10 +166,13 @@ dependencies {
     implementation("com.google.mlkit:barcode-scanning:17.0.2")
     implementation("com.google.accompanist:accompanist-permissions:0.24.9-beta")
 
+    implementation("com.google.dagger:hilt-android:2.41")
+    kapt("com.google.dagger:hilt-android-compiler:2.41")
+
     implementation("com.jakewharton.timber:timber:5.0.1")
 
-    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
+//    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
+//    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.room:room-testing:$roomVersion")
@@ -177,7 +188,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0") {
         exclude(module = "protobuf-lite")
     }
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
+//    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
     androidTestImplementation("androidx.navigation:navigation-testing:$navigationVersion")
 }
 

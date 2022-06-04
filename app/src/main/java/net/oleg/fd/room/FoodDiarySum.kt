@@ -33,4 +33,8 @@ data class FoodDiarySum(
 
     @ColumnInfo(name = "protein", typeAffinity = ColumnInfo.REAL)
     val protein: Float?,
-)
+) {
+    companion object {
+        val ZERO = FoodDiarySum(count = 0, energy = 0f, carbs = 0f, fat = 0f, protein = 0f)
+    }
+}
