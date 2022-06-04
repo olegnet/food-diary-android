@@ -14,7 +14,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@android:color/holo_blue_light"
         android:ellipsize="end"
         android:lines="2"
         android:maxLines="2"
@@ -33,7 +32,6 @@
             android:id="@+id/recyclerview_food_diary_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_green_light"
             android:maxLines="1"
             tools:text="12.34 g" />
 
@@ -41,7 +39,6 @@
             android:id="@+id/recyclerview_food_diary_energy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_orange_light"
             android:maxLines="1"
             tools:text="56.78 k" />
     </LinearLayout>

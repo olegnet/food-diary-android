@@ -16,6 +16,8 @@
 
 package net.oleg.fd.ui
 
+import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,36 +31,55 @@ import net.oleg.fd.ui.DailyListAdapter.DailyListViewHolder
 import net.oleg.fd.viewmodel.divider
 
 class DailyListAdapter(
-    private val onItemClicked: (position: Int, foodDiaryView: FoodDiaryView) -> Unit,
+    savedFoodDiaryView: FoodDiaryView?,
+    private val onItemClicked: (foodDiaryView: FoodDiaryView?) -> Unit,
 ) : PagingDataAdapter<FoodDiaryView, DailyListViewHolder>(COMPARATOR) {
 
+    private var selectedFoodDiaryView: FoodDiaryView? = null
+
+    init {
+        selectedFoodDiaryView = savedFoodDiaryView
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyListViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.daily_list_recyclerview_item, parent, false)
-        return DailyListViewHolder(view, onItemClicked)
+        return DailyListViewHolder(view) { position, foodDiaryView ->
+            if (foodDiaryView == selectedFoodDiaryView) {
+                selectedFoodDiaryView = null
+                onItemClicked(null)
+            } else {
+                selectedFoodDiaryView = foodDiaryView
+                onItemClicked(foodDiaryView)
+            }
+            notifyDataSetChanged()  // FIXME use notifyItemChanged(position)
+        }
     }
 
     override fun onBindViewHolder(holder: DailyListViewHolder, position: Int) {
-        val current = getItem(position)!!   // FIXME !!
-        holder.bind(current)
+        val currentItem = getItem(position)!!   // FIXME !!
+        holder.bind(currentItem, selectedFoodDiaryView)
     }
 
     class DailyListViewHolder(
         itemView: View,
         private val onItemClicked: (position: Int, foodDiaryView: FoodDiaryView) -> Unit,
-    ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    ) : RecyclerView.ViewHolder(itemView) {
+
+        private lateinit var _foodDiaryView: FoodDiaryView
 
         init {
-            itemView.setOnClickListener(this)
+            itemView.setOnClickListener {
+                onItemClicked(bindingAdapterPosition, _foodDiaryView)
+            }
         }
 
         private val nameItemView: TextView = itemView.findViewById(R.id.recyclerview_food_diary_name)
         private val weightItemView: TextView = itemView.findViewById(R.id.recyclerview_food_diary_weight)
         private val energyItemView: TextView = itemView.findViewById(R.id.recyclerview_food_diary_energy)
 
-        private lateinit var _foodDiaryView: FoodDiaryView
-
-        fun bind(foodDiaryView: FoodDiaryView) {
+        fun bind(foodDiaryView: FoodDiaryView, selectedFoodDiaryView: FoodDiaryView?) {
             val foodItem = foodDiaryView.foodItem
             val weight = foodDiaryView.foodDiaryItem.weight
             val energy = weight * foodItem.energy / divider
@@ -67,11 +88,14 @@ class DailyListAdapter(
             nameItemView.text = foodItem.name
             weightItemView.text = context.getString(R.string.units_weight, weight.printToForm())
             energyItemView.text = context.getString(R.string.units_energy, energy.printToForm())
-            _foodDiaryView = foodDiaryView
-        }
 
-        override fun onClick(v: View) {
-            onItemClicked(bindingAdapterPosition, _foodDiaryView)
+            if (foodDiaryView == selectedFoodDiaryView) {
+                nameItemView.setTypeface(null, Typeface.BOLD)
+            } else {
+                nameItemView.setTypeface(null, Typeface.NORMAL)
+            }
+
+            _foodDiaryView = foodDiaryView
         }
     }
 

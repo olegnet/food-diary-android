@@ -29,7 +29,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import net.oleg.fd.R
 import net.oleg.fd.databinding.FragmentDailyListBinding
-import net.oleg.fd.room.FoodDiaryView
 import net.oleg.fd.viewModel
 import net.oleg.fd.viewmodel.FoodViewModel
 import java.util.*
@@ -37,8 +36,6 @@ import java.util.*
 class DailyListFragment : Fragment() {
 
     private lateinit var viewModel: FoodViewModel
-
-    private var selectedFoodDiaryView: FoodDiaryView? = null
 
     private var _binding: FragmentDailyListBinding? = null
     private val binding
@@ -57,12 +54,9 @@ class DailyListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = DailyListAdapter { _, foodDiaryView ->
-            if (foodDiaryView == selectedFoodDiaryView) {
-                viewModel.setSelectedFoodDiaryView(null)
-            } else {
-                viewModel.setSelectedFoodDiaryView(foodDiaryView)
-            }
+        // FIXME don't need viewmodel here anymore?
+        val adapter = DailyListAdapter(viewModel.selectedFoodDiaryView.value) {
+            viewModel.setSelectedFoodDiaryView(it)
         }
 
         val recyclerView = binding.dailyListRecyclerView
@@ -81,11 +75,6 @@ class DailyListFragment : Fragment() {
                     adapter.submitData(it)
                 }
             }
-        }
-
-        viewModel.selectedFoodDiaryView.observe(viewLifecycleOwner) { foodDiaryView ->
-            selectedFoodDiaryView = foodDiaryView
-            // FIXME
         }
 
         binding.buttonDecreaseDay.setOnClickListener { viewModel.addDay(day = -1) }
