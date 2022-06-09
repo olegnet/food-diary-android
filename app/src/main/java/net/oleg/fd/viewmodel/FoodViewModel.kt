@@ -58,6 +58,7 @@ interface FoodViewModel {
     fun setFoodData(foodItem: FoodItem)
 
     // Camera
+    // FIXME don't use Screen in ViewModel
     val cameraReturnPath: LiveData<Screen?>
     fun setCameraReturnPath(screen: Screen?)
 
