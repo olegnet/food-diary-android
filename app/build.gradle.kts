@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("kotlin-parcelize")
+    kotlin("plugin.serialization").version("1.6.21")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
@@ -157,6 +158,8 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("com.google.mlkit:barcode-scanning:17.0.2")
     implementation("com.google.accompanist:accompanist-permissions:0.24.9-beta")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
     implementation("com.jakewharton.timber:timber:5.0.1")
 
