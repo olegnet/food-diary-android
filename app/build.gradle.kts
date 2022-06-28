@@ -12,13 +12,13 @@ plugins {
 
 android {
     namespace = "net.oleg.fd"
-    setCompileSdkVersion(32)
+    setCompileSdkVersion(33)
 
     defaultConfig {
         applicationId = "net.oleg.fd"
 
         minSdk = 27
-        targetSdk = 32
+        targetSdk = 33
 
         versionCode = 7
         versionName = "1.1"
