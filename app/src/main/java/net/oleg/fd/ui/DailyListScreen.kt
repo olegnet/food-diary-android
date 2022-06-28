@@ -85,8 +85,9 @@ fun DailyListScreen(
             val anyFood by viewModel.getAnyFoodItem().observeAsState()
 
             NoFoodColumn(
-                text = R.string.message_no_food_added_yet,
-                onClick = {
+                viewModel = viewModel,
+                message = R.string.message_no_food_added_yet,
+                onAddButtonClick = {
                     if (anyFood == null) {
                         navController.navigate(Screen.EditFood)
                     } else {
@@ -204,10 +205,7 @@ private fun DailyListScreenBody(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
-        lazyColumnProgressItem(
-            lazyListScope = this,
-            isInLoadingState = lazyPagingItems.loadState.refresh == LoadState.Loading
-        )
+        lazyColumnProgressItem(isInLoadingState = lazyPagingItems.loadState.refresh == LoadState.Loading)
 
         itemsIndexed(lazyPagingItems) { _, foodDiaryView ->
             // TODO foodDiaryView can be null if scrolling is too fast

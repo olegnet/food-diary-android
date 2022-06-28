@@ -21,9 +21,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class FoodData(
-    @SerialName("name") val name: String?,
-    @SerialName("energy") val energy: Float?,
-    @SerialName("carbs") val carbs: Float?,
-    @SerialName("fat") val fat: Float?,
-    @SerialName("protein") val protein: Float?,
+    @SerialName("name") val name: String,
+    @SerialName("energy") val energy: Float,
+    @SerialName("carbs") val carbs: Float,
+    @SerialName("fat") val fat: Float,
+    @SerialName("protein") val protein: Float,
 )

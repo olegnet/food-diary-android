@@ -18,7 +18,7 @@ package net.oleg.fd.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import net.oleg.fd.room.FoodDao
-import net.oleg.fd.room.FoodRepository
+import net.oleg.fd.room.FoodRoomRepository
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -43,7 +43,7 @@ open class ViewModelTest {
     @Before
     fun startUp() {
         MockitoAnnotations.openMocks(this)
-        viewModel = FoodViewModelImpl(FoodRepository(foodDao))
+        viewModel = FoodViewModelImpl(FoodRoomRepository(foodDao), dataStoreRepository)
     }
 
     @Test

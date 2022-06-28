@@ -161,6 +161,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
     implementation("com.jakewharton.timber:timber:5.0.1")
 
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")

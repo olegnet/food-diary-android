@@ -24,6 +24,7 @@ import net.oleg.fd.room.FoodDiarySum
 import net.oleg.fd.room.FoodDiaryView
 import net.oleg.fd.room.FoodItem
 import net.oleg.fd.ui.Screen
+import java.io.InputStream
 import java.util.*
 
 interface FoodViewModel {
@@ -61,6 +62,11 @@ interface FoodViewModel {
     // FIXME don't use Screen in ViewModel
     val cameraReturnPath: LiveData<Screen?>
     fun setCameraReturnPath(screen: Screen?)
+
+    // Import json
+    val isNutritionDataImported: LiveData<Boolean>
+    val importNutritionDataProgress: LiveData<Float?>
+    fun importNutritionData(inputStream: InputStream)
 
     // Database
     suspend fun insertOrUpdateFood(

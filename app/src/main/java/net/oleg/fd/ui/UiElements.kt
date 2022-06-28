@@ -33,25 +33,24 @@ val pagingConfig =
         maxSize = 200
     )
 
-fun lazyColumnProgressItem(lazyListScope: LazyListScope, isInLoadingState: Boolean) =
-    lazyListScope.apply {
-        val modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentWidth(Alignment.CenterHorizontally)
-        item {
-            if (isInLoadingState) {
-                LinearProgressIndicator(
-                    modifier = modifier
-                )
-            } else {
-                LinearProgressIndicator(
-                    modifier = modifier,
-                    trackColor = Color.Transparent,
-                    progress = 0f
-                )
-            }
+fun LazyListScope.lazyColumnProgressItem(isInLoadingState: Boolean) {
+    val modifier = Modifier
+        .fillMaxWidth()
+        .wrapContentWidth(Alignment.CenterHorizontally)
+    item {
+        if (isInLoadingState) {
+            LinearProgressIndicator(
+                modifier = modifier
+            )
+        } else {
+            LinearProgressIndicator(
+                modifier = modifier,
+                trackColor = Color.Transparent,
+                progress = 0f
+            )
         }
     }
+}
 
 val foodItemDummy = FoodItem(
     id = 0,

@@ -23,16 +23,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -42,6 +46,7 @@ import net.oleg.fd.R
 import net.oleg.fd.room.FoodItem
 import net.oleg.fd.ui.theme.invertedButtonColors
 import net.oleg.fd.viewmodel.FloatFieldState
+import net.oleg.fd.viewmodel.FoodViewModel
 import net.oleg.fd.viewmodel.FoodViewModelMock
 
 @Composable
@@ -218,9 +223,14 @@ fun EditFoodWeightRow(
 
 @Composable
 fun NoFoodColumn(
-    @StringRes text: Int,
-    onClick: () -> Unit
+    viewModel: FoodViewModel,
+    @StringRes message: Int,
+    onAddButtonClick: () -> Unit
 ) {
+    val resources = LocalContext.current.resources
+    val isNutritionDataImported by viewModel.isNutritionDataImported.observeAsState()
+    val importNutritionDataProgress by viewModel.importNutritionDataProgress.observeAsState()
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -231,15 +241,50 @@ fun NoFoodColumn(
             modifier = Modifier
                 .wrapContentSize()
                 .padding(bottom = 16.dp),
-            text = stringResource(id = text)
+            text = stringResource(id = message)
         )
         Button(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 64.dp),
-            onClick = onClick
+            onClick = onAddButtonClick
         ) {
             Text(text = stringResource(id = R.string.button_add))
+        }
+
+        if (isNutritionDataImported != true) {
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 64.dp, vertical = 12.dp),
+                colors = invertedButtonColors(),
+                enabled = importNutritionDataProgress == null,
+                onClick = {
+                    val nutrition = resources.openRawResource(R.raw.nutrition)
+                    viewModel.importNutritionData(nutrition)
+                }
+            ) {
+                Text(text = stringResource(id = R.string.button_import_food_data))
+            }
+            if (importNutritionDataProgress != null) {
+                LinearProgressIndicator(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 64.dp, vertical = 12.dp),
+                    progress = importNutritionDataProgress ?: 0f
+                )
+            }
+        } else {
+            Spacer(
+                modifier = Modifier
+                    .padding(vertical = 8.dp)
+            )
+            Text(
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(horizontal = 64.dp, vertical = 12.dp),
+                text = stringResource(id = R.string.message_food_data_imported)
+            )
         }
     }
 }

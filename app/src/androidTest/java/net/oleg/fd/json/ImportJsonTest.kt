@@ -20,14 +20,31 @@ import androidx.annotation.RawRes
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import net.oleg.fd.MainActivity
 import net.oleg.fd.R
-import org.junit.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+
+@Serializable
+data class FoodDataJson(
+    @SerialName("data") val data: List<FoodData>,
+)
+
+@Serializable
+data class FoodData(
+    @SerialName("name") val name: String?,
+    @SerialName("energy") val energy: Float?,
+    @SerialName("carbs") val carbs: Float?,
+    @SerialName("fat") val fat: Float?,
+    @SerialName("protein") val protein: Float?,
+)
 
 @OptIn(ExperimentalSerializationApi::class)
 @RunWith(AndroidJUnit4::class)
@@ -40,8 +57,17 @@ class ImportJsonTest {
 
     @Test
     fun check_json_test() {
-        val json = openRawResource(R.raw.energy)
+        val json = openRawResource(R.raw.nutrition)
         val foodDataJson = Json.decodeFromStream<FoodDataJson>(json)
-        Assert.assertEquals(13467, foodDataJson.data.size)
+
+        assertEquals(9944, foodDataJson.data.size)
+
+        foodDataJson.data.forEach {
+            assertNotNull(it.name)
+            assertNotNull(it.energy)
+            assertNotNull(it.protein)
+            assertNotNull(it.fat)
+            assertNotNull(it.carbs)
+        }
     }
 }

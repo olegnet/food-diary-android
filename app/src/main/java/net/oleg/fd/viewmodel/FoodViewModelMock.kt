@@ -26,6 +26,7 @@ import net.oleg.fd.room.FoodDiarySum
 import net.oleg.fd.room.FoodDiaryView
 import net.oleg.fd.room.FoodItem
 import net.oleg.fd.ui.Screen
+import java.io.InputStream
 import java.util.*
 
 object FoodViewModelMock : FoodViewModel {
@@ -93,6 +94,10 @@ object FoodViewModelMock : FoodViewModel {
 
     override val cameraReturnPath = MutableLiveData<Screen?>(null)
     override fun setCameraReturnPath(screen: Screen?) {}
+
+    override val isNutritionDataImported = MutableLiveData(false)
+    override val importNutritionDataProgress =  MutableLiveData(0.5f)
+    override fun importNutritionData(inputStream: InputStream) {}
 
     override suspend fun insertOrUpdateFood(
         id: Long?,

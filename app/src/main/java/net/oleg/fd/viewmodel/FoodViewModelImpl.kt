@@ -20,12 +20,20 @@ import androidx.lifecycle.*
 import androidx.paging.PagingSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromStream
+import net.oleg.fd.json.FoodDataJson
+import net.oleg.fd.prefs.DataStoreRepository
 import net.oleg.fd.room.*
 import net.oleg.fd.ui.Screen
+import timber.log.Timber
+import java.io.InputStream
 import java.util.*
 
 class FoodViewModelImpl(
-    private val repository: FoodRepository,
+    private val roomRepository: FoodRepository,
+    private val dataStoreRepository: DataStoreRepository,
 ) : ViewModel(), FoodViewModel {
 
     // region calendar
@@ -136,14 +144,60 @@ class FoodViewModelImpl(
             protein = FloatFieldState(foodItem.protein),
         )
     }
+    // endregion foodData
 
+    // region camera
     private val _cameraReturnPath = MutableLiveData<Screen?>(null)
     override val cameraReturnPath: LiveData<Screen?> = _cameraReturnPath
 
     override fun setCameraReturnPath(screen: Screen?) {
         _cameraReturnPath.value = screen
     }
-    // endregion foodData
+    // endregion camera
+
+    // region nutritionData
+    override val isNutritionDataImported: LiveData<Boolean>
+        get() = dataStoreRepository.isNutritionDataImportedFlow.asLiveData()
+
+    private val _importNutritionDataProgress = MutableLiveData<Float?>(null)
+    override val importNutritionDataProgress: LiveData<Float?>
+        get() = _importNutritionDataProgress
+
+    @OptIn(ExperimentalSerializationApi::class)
+    override fun importNutritionData(inputStream: InputStream) {
+        viewModelScope.launch(Dispatchers.IO) {
+            var count = 0
+            _importNutritionDataProgress.postValue(0f)
+
+            val foodDataJson = Json.decodeFromStream<FoodDataJson>(inputStream)
+            Timber.d("importNutritionData: size: ${foodDataJson.data.size}")
+
+            val date = Date()
+            foodDataJson.data.forEach {
+                count ++
+                _importNutritionDataProgress.postValue(count.toFloat() / foodDataJson.data.size)
+                val insertFoodItem = FoodItem(
+                    id = null,
+                    name = it.name,
+                    barcode = null,
+                    date = date,
+                    energy = it.energy,
+                    carbs = it.carbs,
+                    fat = it.fat,
+                    protein = it.protein,
+                    itemIsDeleted = false
+                )
+                val newId = roomRepository.insertFoodItem(insertFoodItem)
+                Timber.d("importNutritionData: newId: $newId")
+            }
+            Timber.d("importNutritionData: time: ${Date().time - date.time}")
+
+            dataStoreRepository.setNutritionDataImported()
+
+            _importNutritionDataProgress.postValue(null)
+        }
+    }
+    // endregion nutritionData
 
     // region database
     override suspend fun insertOrUpdateFood(
@@ -156,7 +210,7 @@ class FoodViewModelImpl(
         protein: Float?,
     ) = viewModelScope.launch(Dispatchers.IO) {
         if (id != null) {
-            val foodItem = repository.getFood(id)
+            val foodItem = roomRepository.getFood(id)
             if (foodItem?.name == name &&
                 foodItem.barcode == barcode &&
                 foodItem.energy == energy &&
@@ -181,10 +235,10 @@ class FoodViewModelImpl(
             protein = protein,
             itemIsDeleted = false
         )
-        val newId = repository.insertFoodItem(insertFoodItem)
+        val newId = roomRepository.insertFoodItem(insertFoodItem)
 
         if (id != null) {
-            repository.markFoodItemAsDeleted(id)
+            roomRepository.markFoodItemAsDeleted(id)
         }
 
         // If next time user press Save button with no changes we will skip it above
@@ -194,60 +248,60 @@ class FoodViewModelImpl(
 
     override suspend fun markFoodItemAsDeleted(id: Long) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.markFoodItemAsDeleted(id)
+            roomRepository.markFoodItemAsDeleted(id)
         }
 
     override suspend fun markFoodItemAsNotDeleted(id: Long) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.markFoodItemAsNotDeleted(id)
+            roomRepository.markFoodItemAsNotDeleted(id)
         }
 
     override fun getFoodItems(foodDataRequest: FoodDataRequest?): PagingSource<Int, FoodItem> =
         when {
             foodDataRequest?.search != null ->
-                repository.getFoodItems(foodDataRequest.search)
+                roomRepository.getFoodItems(foodDataRequest.search)
             foodDataRequest?.barcode != null ->
-                repository.getFoodItemsByBarcode(foodDataRequest.barcode)
+                roomRepository.getFoodItemsByBarcode(foodDataRequest.barcode)
             else ->
-                repository.getAllFoodItems()
+                roomRepository.getAllFoodItems()
         }
 
     override fun getAnyFoodItem(): LiveData<FoodItem> =
-        repository.getAnyFoodItem().asLiveData()
+        roomRepository.getAnyFoodItem().asLiveData()
 
     override fun getFoodAsLiveData(barcode: String): LiveData<FoodItem> =
-        repository.getFoodForLivedata(barcode).asLiveData()
+        roomRepository.getFoodForLivedata(barcode).asLiveData()
 
     override fun getFoodAsLiveData(id: Long): LiveData<FoodItem> =
-        repository.getFoodForLivedata(id).asLiveData()
+        roomRepository.getFoodForLivedata(id).asLiveData()
 
     override suspend fun getFood(barcode: String): FoodItem? =
-        repository.getFood(barcode)
+        roomRepository.getFood(barcode)
 
     override suspend fun getFood(id: Long): FoodItem? =
-        repository.getFood(id)
+        roomRepository.getFood(id)
 
     override fun getFoodDiarySum(calendar: Calendar): LiveData<FoodDiarySum> =
-        repository.getFoodDiarySum(getStartOfDay(calendar), getEndOfDay(calendar)).asLiveData()
+        roomRepository.getFoodDiarySum(getStartOfDay(calendar), getEndOfDay(calendar)).asLiveData()
 
     override fun getFoodDiary(calendar: Calendar): PagingSource<Int, FoodDiaryView> =
-        repository.getFoodDiary(getStartOfDay(calendar), getEndOfDay(calendar))
+        roomRepository.getFoodDiary(getStartOfDay(calendar), getEndOfDay(calendar))
 
     override fun insertFoodDiaryItem(foodDiaryItem: FoodDiaryItem) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.insertFoodDiaryItem(foodDiaryItem)
-            repository.updateFoodItemDate(foodDiaryItem.itemId)
+            roomRepository.insertFoodDiaryItem(foodDiaryItem)
+            roomRepository.updateFoodItemDate(foodDiaryItem.itemId)
         }
 
     override fun updateFoodDiaryItem(foodDiaryItem: FoodDiaryItem) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateFoodDiaryItem(foodDiaryItem)
-            repository.updateFoodItemDate(foodDiaryItem.itemId)
+            roomRepository.updateFoodDiaryItem(foodDiaryItem)
+            roomRepository.updateFoodItemDate(foodDiaryItem.itemId)
         }
 
     override fun deleteFoodDiaryItem(foodDiaryItem: FoodDiaryItem) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteFoodDiaryItem(foodDiaryItem)
+            roomRepository.deleteFoodDiaryItem(foodDiaryItem)
         }
     // endregion database
 

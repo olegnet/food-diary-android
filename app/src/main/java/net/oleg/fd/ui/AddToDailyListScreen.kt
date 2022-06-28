@@ -184,11 +184,12 @@ fun AddToDailyListScreen(
 
         if (lazyPagingItems.itemCount < 1) {
             NoFoodColumn(
-                text = if (foodDataRequest?.barcode != null)
+                viewModel = viewModel,
+                message = if (foodDataRequest?.barcode != null)
                     R.string.message_food_with_barcode_not_found
                 else
                     R.string.message_no_food_added_yet,
-                onClick = {
+                onAddButtonClick = {
                     navController.navigate(Screen.EditFood)
                 }
             )
@@ -199,10 +200,7 @@ fun AddToDailyListScreen(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
             ) {
-                lazyColumnProgressItem(
-                    lazyListScope = this,
-                    isInLoadingState = lazyPagingItems.loadState.refresh == LoadState.Loading
-                )
+                lazyColumnProgressItem(isInLoadingState = lazyPagingItems.loadState.refresh == LoadState.Loading)
 
                 itemsIndexed(lazyPagingItems) { _, foodItem ->
                     // TODO foodItem can be null if scrolling is too fast

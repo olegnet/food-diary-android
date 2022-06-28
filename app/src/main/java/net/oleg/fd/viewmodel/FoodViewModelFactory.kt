@@ -18,16 +18,18 @@ package net.oleg.fd.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import net.oleg.fd.prefs.DataStoreRepository
 import net.oleg.fd.room.FoodRepository
 
 class FoodViewModelFactory(
-    private val repository: FoodRepository,
+    private val roomRepository: FoodRepository,
+    private val dataStoreRepository: DataStoreRepository,
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(FoodViewModelImpl::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return FoodViewModelImpl(repository) as T
+            return FoodViewModelImpl(roomRepository, dataStoreRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

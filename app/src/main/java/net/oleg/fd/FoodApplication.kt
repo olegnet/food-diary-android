@@ -18,6 +18,7 @@ package net.oleg.fd
 
 import android.app.Application
 import android.os.StrictMode
+import net.oleg.fd.prefs.DataStoreRepository
 import net.oleg.fd.room.FoodDatabase
 import net.oleg.fd.room.FoodRepository
 import timber.log.Timber
@@ -25,7 +26,8 @@ import timber.log.Timber
 class FoodApplication : Application() {
 
     private val database by lazy { FoodDatabase.getDatabase(this) }
-    val repository by lazy { FoodRepository(database.foodDao()) }
+    val roomRepository by lazy { FoodRepository(database.foodDao()) }
+    val dataStoreRepository by lazy { DataStoreRepository(this) }
 
     override fun onCreate() {
         if (BuildConfig.DEBUG) {

@@ -27,7 +27,8 @@ import net.oleg.fd.viewmodel.FoodViewModelFactory
 class MainActivity : ComponentActivity() {
 
     private val viewModel: FoodViewModel by viewModels {
-        FoodViewModelFactory((application as FoodApplication).repository)
+        val app = application as FoodApplication
+        FoodViewModelFactory(app.roomRepository, app.dataStoreRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
