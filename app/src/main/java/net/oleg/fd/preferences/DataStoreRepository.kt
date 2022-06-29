@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.oleg.fd.prefs
+package net.oleg.fd.preferences
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -39,8 +39,8 @@ class DataStoreRepository(
         }
 
     suspend fun setNutritionDataImported() {
-        context.dataStore.edit { settings ->
-            settings[isNutritionDataImportedKey] = _true
+        context.dataStore.edit { preferences ->
+            preferences[isNutritionDataImportedKey] = _true
         }
     }
 }

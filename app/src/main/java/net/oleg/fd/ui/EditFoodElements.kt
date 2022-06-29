@@ -33,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +43,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import net.oleg.fd.R
 import net.oleg.fd.room.FoodItem
 import net.oleg.fd.ui.theme.invertedButtonColors
@@ -228,6 +230,7 @@ fun NoFoodColumn(
     onAddButtonClick: () -> Unit
 ) {
     val resources = LocalContext.current.resources
+    val currentScope = rememberCoroutineScope()
     val isNutritionDataImported by viewModel.isNutritionDataImported.observeAsState()
     val importNutritionDataProgress by viewModel.importNutritionDataProgress.observeAsState()
 
@@ -253,25 +256,32 @@ fun NoFoodColumn(
         }
 
         if (isNutritionDataImported != true) {
+            val modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 64.dp, vertical = 12.dp)
             Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 64.dp, vertical = 12.dp),
+                modifier = modifier,
                 colors = invertedButtonColors(),
                 enabled = importNutritionDataProgress == null,
                 onClick = {
-                    val nutrition = resources.openRawResource(R.raw.nutrition)
-                    viewModel.importNutritionData(nutrition)
+                    currentScope.launch {
+                        val nutrition = resources.openRawResource(R.raw.nutrition)
+                        viewModel.importNutritionData(nutrition)
+                    }
                 }
             ) {
                 Text(text = stringResource(id = R.string.button_import_food_data))
             }
             if (importNutritionDataProgress != null) {
                 LinearProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 64.dp, vertical = 12.dp),
+                    modifier = modifier,
                     progress = importNutritionDataProgress ?: 0f
+                )
+            } else {
+                LinearProgressIndicator(
+                    modifier = modifier,
+                    color = colorScheme.background,
+                    progress = 1f
                 )
             }
         } else {

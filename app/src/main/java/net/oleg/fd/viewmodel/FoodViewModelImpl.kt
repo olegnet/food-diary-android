@@ -20,11 +20,12 @@ import androidx.lifecycle.*
 import androidx.paging.PagingSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import net.oleg.fd.json.FoodDataJson
-import net.oleg.fd.prefs.DataStoreRepository
+import net.oleg.fd.preferences.DataStoreRepository
 import net.oleg.fd.room.*
 import net.oleg.fd.ui.Screen
 import timber.log.Timber
@@ -164,18 +165,21 @@ class FoodViewModelImpl(
         get() = _importNutritionDataProgress
 
     @OptIn(ExperimentalSerializationApi::class)
-    override fun importNutritionData(inputStream: InputStream) {
-        viewModelScope.launch(Dispatchers.IO) {
+    override suspend fun importNutritionData(inputStream: InputStream) {
+        withContext(Dispatchers.IO) {
             var count = 0
             _importNutritionDataProgress.postValue(0f)
 
             val foodDataJson = Json.decodeFromStream<FoodDataJson>(inputStream)
             Timber.d("importNutritionData: size: ${foodDataJson.data.size}")
 
+            val foodItems = mutableListOf<FoodItem>()
             val date = Date()
             foodDataJson.data.forEach {
-                count ++
-                _importNutritionDataProgress.postValue(count.toFloat() / foodDataJson.data.size)
+                count++
+                if (count % 200 == 0) {
+                    _importNutritionDataProgress.postValue(count.toFloat() / foodDataJson.data.size)
+                }
                 val insertFoodItem = FoodItem(
                     id = null,
                     name = it.name,
@@ -187,10 +191,18 @@ class FoodViewModelImpl(
                     protein = it.protein,
                     itemIsDeleted = false
                 )
-                val newId = roomRepository.insertFoodItem(insertFoodItem)
-                Timber.d("importNutritionData: newId: $newId")
+                foodItems.add(insertFoodItem)
             }
+
+            val result = roomRepository.insertFoodItems(foodItems)
+            Timber.d("importNutritionData: result.size: ${result.size}")
+
             Timber.d("importNutritionData: time: ${Date().time - date.time}")
+
+            if (result.size != foodDataJson.data.size) {
+                // FIXME show message instead
+                throw RuntimeException("json data size: source=${foodDataJson.data.size} inserted=${result.size}")
+            }
 
             dataStoreRepository.setNutritionDataImported()
 

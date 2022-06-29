@@ -66,7 +66,7 @@ interface FoodViewModel {
     // Import json
     val isNutritionDataImported: LiveData<Boolean>
     val importNutritionDataProgress: LiveData<Float?>
-    fun importNutritionData(inputStream: InputStream)
+    suspend fun importNutritionData(inputStream: InputStream)
 
     // Database
     suspend fun insertOrUpdateFood(

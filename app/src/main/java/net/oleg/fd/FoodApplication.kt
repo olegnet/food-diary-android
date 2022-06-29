@@ -18,7 +18,7 @@ package net.oleg.fd
 
 import android.app.Application
 import android.os.StrictMode
-import net.oleg.fd.prefs.DataStoreRepository
+import net.oleg.fd.preferences.DataStoreRepository
 import net.oleg.fd.room.FoodDatabase
 import net.oleg.fd.room.FoodRepository
 import timber.log.Timber

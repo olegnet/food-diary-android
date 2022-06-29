@@ -97,7 +97,7 @@ object FoodViewModelMock : FoodViewModel {
 
     override val isNutritionDataImported = MutableLiveData(false)
     override val importNutritionDataProgress =  MutableLiveData(0.5f)
-    override fun importNutritionData(inputStream: InputStream) {}
+    override suspend fun importNutritionData(inputStream: InputStream) {}
 
     override suspend fun insertOrUpdateFood(
         id: Long?,

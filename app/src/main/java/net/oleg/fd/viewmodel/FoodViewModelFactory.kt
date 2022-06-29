@@ -18,7 +18,7 @@ package net.oleg.fd.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import net.oleg.fd.prefs.DataStoreRepository
+import net.oleg.fd.preferences.DataStoreRepository
 import net.oleg.fd.room.FoodRepository
 
 class FoodViewModelFactory(

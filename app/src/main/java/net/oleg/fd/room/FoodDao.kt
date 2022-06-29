@@ -63,6 +63,9 @@ interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertFoodItem(foodItem: FoodItem): Long
 
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertFoodItems(foodItems: List<FoodItem>): List<Long>
+
     @Query("UPDATE food_item " +
             "SET item_is_deleted = 1 " +
             "WHERE item_id = :id"

@@ -60,7 +60,7 @@ class ImportJsonTest {
         val json = openRawResource(R.raw.nutrition)
         val foodDataJson = Json.decodeFromStream<FoodDataJson>(json)
 
-        assertEquals(9944, foodDataJson.data.size)
+        assertEquals(9464, foodDataJson.data.size)
 
         foodDataJson.data.forEach {
             assertNotNull(it.name)

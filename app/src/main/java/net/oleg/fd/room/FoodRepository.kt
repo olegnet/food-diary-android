@@ -43,6 +43,9 @@ class FoodRepository(
     suspend fun insertFoodItem(foodItem: FoodItem): Long =
         foodDao.insertFoodItem(foodItem)
 
+    suspend fun insertFoodItems(foodItems: List<FoodItem>): List<Long> =
+        foodDao.insertFoodItems(foodItems)
+
     suspend fun markFoodItemAsDeleted(id: Long) {
         foodDao.markFoodItemAsDeleted(id)
     }
