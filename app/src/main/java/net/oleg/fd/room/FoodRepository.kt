@@ -18,15 +18,22 @@ package net.oleg.fd.room
 
 import androidx.annotation.WorkerThread
 import androidx.paging.PagingSource
+import androidx.sqlite.db.SimpleSQLiteQuery
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 class FoodRepository(
     private val foodDao: FoodDao
 ) {
+    private val spaces = Regex("\\s+")
+
     @WorkerThread
-    fun getFoodItems(search: String): PagingSource<Int, FoodItem> =
-        foodDao.getFoodItems(search)
+    fun getFoodItems(search: String): PagingSource<Int, FoodItem> {
+        val args = search.split(spaces)
+        val subQuery = args.joinToString(" ") { _ -> "AND name LIKE '%' || ? || '%'" }
+        val query = "SELECT * FROM food_item WHERE item_is_deleted = 0 $subQuery ORDER BY item_date DESC"
+        return foodDao.getFoodItems(SimpleSQLiteQuery(query, args.toTypedArray()))
+    }
 
     @WorkerThread
     fun getAllFoodItems(): PagingSource<Int, FoodItem> =

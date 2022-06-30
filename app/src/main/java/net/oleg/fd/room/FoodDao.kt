@@ -18,19 +18,15 @@ package net.oleg.fd.room
 
 import androidx.paging.PagingSource
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 @Dao
 interface FoodDao {
 
-    @Query("SELECT * " +
-            "FROM food_item " +
-            "WHERE item_is_deleted = 0 " +
-            "AND name LIKE '%' || :search || '%' " +
-            "ORDER BY item_date DESC"
-    )
-    fun getFoodItems(search: String): PagingSource<Int, FoodItem>
+    @RawQuery(observedEntities = [FoodItem::class])
+    fun getFoodItems(query: SupportSQLiteQuery): PagingSource<Int, FoodItem>
 
     @Query("SELECT * " +
             "FROM food_item " +
