@@ -6,7 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("kotlin-parcelize")
-    kotlin("plugin.serialization").version("1.6.21")
+    kotlin("plugin.serialization").version("1.7.0")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
@@ -22,8 +22,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 10
-        versionName = "1.4"
+        versionCode = 13
+        versionName = "1.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -94,7 +94,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-beta03"
+        kotlinCompilerExtensionVersion = "1.2.0"
     }
 
     packagingOptions {
@@ -112,10 +112,10 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.2.0-beta03" // same as in kotlinCompilerExtensionVersion
-    val cameraxVersion = "1.2.0-alpha01"
-    val navigationVersion = "2.4.2"
-    val roomVersion = "2.5.0-alpha01"
+    val composeVersion = "1.2.0-rc03"
+    val cameraxVersion = "1.2.0-alpha03"
+    val navigationVersion = "2.5.0"
+    val roomVersion = "2.5.0-alpha02"
     val material3Version = "1.0.0-alpha13"
     val lifecycleVersion = "2.5.0-rc01"
 
@@ -142,7 +142,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
 
-    implementation(platform("com.google.firebase:firebase-bom:30.0.1"))
+    implementation(platform("com.google.firebase:firebase-bom:30.1.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-perf-ktx")
