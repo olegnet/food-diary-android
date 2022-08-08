@@ -1,6 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
 import java.util.*
 
 plugins {
@@ -24,8 +23,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 14
-        versionName = "1.8"
+        versionCode = 16
+        versionName = "1.10"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -60,9 +59,9 @@ android {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.findByName("release")
-            configure<CrashlyticsExtension> {
-                mappingFileUploadEnabled = false
-            }
+//            configure<CrashlyticsExtension> {
+//                mappingFileUploadEnabled = false
+//            }
         }
         val debug by getting {
             isMinifyEnabled = false
@@ -144,7 +143,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
 
-    implementation(platform("com.google.firebase:firebase-bom:30.1.0"))
+    implementation(platform("com.google.firebase:firebase-bom:30.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-perf-ktx")
