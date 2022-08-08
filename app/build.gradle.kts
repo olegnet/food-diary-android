@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
 import java.util.*
 
@@ -22,8 +24,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 13
-        versionName = "1.7"
+        versionCode = 14
+        versionName = "1.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -120,7 +122,7 @@ dependencies {
     val lifecycleVersion = "2.5.0-rc01"
 
     implementation("androidx.core:core-ktx:1.8.0")
-    implementation("androidx.activity:activity-compose:1.4.0")
+    implementation("androidx.activity:activity-compose:1.5.1")
     implementation("com.google.android.material:material:1.6.1")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
