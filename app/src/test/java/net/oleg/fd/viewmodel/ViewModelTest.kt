@@ -16,9 +16,12 @@
 
 package net.oleg.fd.viewmodel
 
+import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.core.app.ApplicationProvider
+import net.oleg.fd.preferences.DataStoreRepository
 import net.oleg.fd.room.FoodDao
-import net.oleg.fd.room.FoodRoomRepository
+import net.oleg.fd.room.FoodRepository
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -27,8 +30,10 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
+@Config(sdk = [32])                     // FIXME
 open class ViewModelTest {
 
     @Rule
@@ -38,12 +43,15 @@ open class ViewModelTest {
     @Mock
     lateinit var foodDao: FoodDao
 
+    private lateinit var context : Context
+
     private lateinit var viewModel: FoodViewModel
 
     @Before
     fun startUp() {
         MockitoAnnotations.openMocks(this)
-        viewModel = FoodViewModelImpl(FoodRoomRepository(foodDao), dataStoreRepository)
+        context = ApplicationProvider.getApplicationContext()
+        viewModel = FoodViewModelImpl(FoodRepository(foodDao), DataStoreRepository(context))
     }
 
     @Test
