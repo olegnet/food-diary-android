@@ -157,7 +157,7 @@ dependencies {
     implementation("androidx.room:room-paging:$roomVersion")
 
     implementation("androidx.paging:paging-common-ktx:3.1.1")
-    implementation("androidx.paging:paging-compose:1.0.0-alpha15")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha16")
 
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
@@ -177,7 +177,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.room:room-testing:$roomVersion")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("androidx.test:core-ktx:1.4.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.mockito:mockito-core:4.5.1")
