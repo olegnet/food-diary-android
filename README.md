@@ -31,5 +31,5 @@ Enjoy
     it is licensed under the open source "Creative Commons Attribution 4.0 
     International" license.
     
-    https://iconduck.com/emojis/15973/pot-of-food
-
+    Color version https://iconduck.com/emojis/15973/pot-of-food
+    Monochrome version https://iconduck.com/emojis/17994/pot-of-food
