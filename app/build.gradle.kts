@@ -7,7 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("kotlin-parcelize")
-    kotlin("plugin.serialization").version("1.7.0")
+    kotlin("plugin.serialization")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
@@ -23,8 +23,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 18
-        versionName = "1.12"
+        versionCode = 19
+        versionName = "1.13"
 
         resourceConfigurations.addAll(listOf("en", "ru"))
 
@@ -97,7 +97,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0"
+        kotlinCompilerExtensionVersion = "1.3.0"
     }
 
     packagingOptions {
@@ -115,16 +115,16 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.2.0-rc03"
-    val cameraxVersion = "1.2.0-alpha03"
-    val navigationVersion = "2.5.0"
+    val composeVersion = "1.3.0-alpha03"
+    val cameraxVersion = "1.2.0-alpha04"
+    val navigationVersion = "2.5.1"
     val roomVersion = "2.5.0-alpha02"
-    val material3Version = "1.0.0-alpha13"
-    val lifecycleVersion = "2.5.0-rc01"
+    val material3Version = "1.0.0-alpha16"
+    val lifecycleVersion = "2.5.1"
 
-    implementation("androidx.core:core-ktx:1.8.0")
-    implementation("androidx.activity:activity-compose:1.5.1")
-    implementation("com.google.android.material:material:1.6.1")
+    implementation("androidx.core:core-ktx:1.9.0-beta01")
+    implementation("androidx.activity:activity-compose:1.6.0-beta01")
+    implementation("com.google.android.material:material:1.7.0-beta01")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
@@ -164,9 +164,9 @@ dependencies {
     implementation("androidx.camera:camera-view:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("com.google.mlkit:barcode-scanning:17.0.2")
-    implementation("com.google.accompanist:accompanist-permissions:0.24.9-beta")
+    implementation("com.google.accompanist:accompanist-permissions:0.25.1")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
