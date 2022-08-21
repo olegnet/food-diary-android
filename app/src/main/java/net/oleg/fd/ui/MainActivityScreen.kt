@@ -21,13 +21,12 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddComment
-import androidx.compose.material.icons.filled.Camera
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -53,9 +52,10 @@ sealed class Screen(val route: String, val icon: ImageVector, @StringRes val tex
     object AddToDailyList : Screen("add-to-daily-list", Icons.Filled.AddComment, R.string.nav_bar_add_to_daily_list)
     object EditFood : Screen("add-or-edit-food", Icons.Filled.Edit, R.string.nav_bar_edit_food)
     object Camera : Screen("camera", Icons.Filled.Camera, R.string.nav_bar_camera_short)
+    object Settings : Screen("settings", Icons.Filled.Settings, R.string.nav_bar_settings)
 
     // not a real screen. used in viewmodel.cameraReturnPath
-    object Barcode: Screen("barcode", Icons.Filled.Camera, R.string.nav_bar_camera_short)
+    object Barcode : Screen("barcode", Icons.Filled.Camera, R.string.nav_bar_camera_short)
 }
 
 fun NavHostController.navigate(screen: Screen) {
@@ -74,10 +74,11 @@ fun NavHostController.navigate(screen: Screen) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainActivityScreen(
-    viewModel: FoodViewModel
+    viewModel: FoodViewModel,
 ) {
-    val navBarItems = listOf(Screen.DailyList, Screen.AddToDailyList, Screen.EditFood, Screen.Camera)
+    val navBarItems = listOf(Screen.DailyList, Screen.AddToDailyList, Screen.EditFood, Screen.Settings)
     val navController = rememberNavController()
+    val (showFab, setShowFab) = remember { mutableStateOf(true) }
 
     FoodDiaryTheme {
         Scaffold(
@@ -109,13 +110,39 @@ fun MainActivityScreen(
                         )
                     }
                 }
-            }
+            },
+            floatingActionButton = {
+                if (showFab) {
+                    ExtendedFloatingActionButton(
+                        icon = { Icon(Icons.Filled.Camera, stringResource(R.string.nav_bar_camera_short)) },
+                        text = { Text(stringResource(R.string.nav_bar_camera_short)) },
+                        onClick = { navController.navigate(Screen.Camera) }
+                    )
+                }
+            },
+            floatingActionButtonPosition = FabPosition.End
         ) { innerPadding ->
             NavHost(navController, startDestination = Screen.DailyList.route, Modifier.padding(innerPadding)) {
-                composable(Screen.DailyList.route) { DailyListScreen(navController, viewModel) }
-                composable(Screen.AddToDailyList.route) { AddToDailyListScreen(navController, viewModel) }
-                composable(Screen.EditFood.route) { EditFoodForm(navController, viewModel) }
-                composable(Screen.Camera.route) { CameraScreen(navController, viewModel) }
+                composable(Screen.DailyList.route) {
+                    setShowFab(true)
+                    DailyListScreen(navController, viewModel)
+                }
+                composable(Screen.AddToDailyList.route) {
+                    setShowFab(true)
+                    AddToDailyListScreen(navController, viewModel)
+                }
+                composable(Screen.EditFood.route) {
+                    setShowFab(true)
+                    EditFoodForm(navController, viewModel)
+                }
+                composable(Screen.Camera.route) {
+                    setShowFab(false)
+                    CameraScreen(navController, viewModel)
+                }
+                composable(Screen.Settings.route) {
+                    setShowFab(true)
+                    Settings(navController, viewModel)
+                }
             }
         }
     }
