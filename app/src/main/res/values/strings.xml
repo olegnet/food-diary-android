@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Food diary</string>
+    <string name="allow_backup" translatable="false">true</string>
+
     <string name="nav_bar_daily_list">List</string>
     <string name="nav_bar_add_to_daily_list">Add food</string>
     <string name="nav_bar_camera">Scan barcode</string>

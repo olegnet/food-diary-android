@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Food diary (debug)</string>
+    <string name="allow_backup" translatable="false">false</string>
 </resources>
