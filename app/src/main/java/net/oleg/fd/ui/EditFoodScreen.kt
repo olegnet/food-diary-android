@@ -186,7 +186,7 @@ fun EditFoodForm(
                     label = { Text(stringResource(R.string.label_carbs)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                    isError = carbs.isError,
+                    isError = carbs.isError && !carbs.valueIsZero,
                     shape = shapes.small
                 )
             }
@@ -207,7 +207,7 @@ fun EditFoodForm(
                     label = { Text(stringResource(R.string.label_fat)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                    isError = fat.isError,
+                    isError = fat.isError && !fat.valueIsZero,
                     shape = shapes.small
                 )
                 OutlinedTextField(
@@ -223,7 +223,7 @@ fun EditFoodForm(
                     keyboardActions = KeyboardActions(onNext = {
                         focusManager.clearFocus()
                     }),
-                    isError = protein.isError,
+                    isError = protein.isError && !protein.valueIsZero,
                     shape = shapes.small
                 )
             }
@@ -246,7 +246,8 @@ fun EditFoodForm(
                                 fat.value.isEmpty() || protein.value.isEmpty() ->
                             showErrorMessage(R.string.message_fill_form_and_save_again)
 
-                        energy.isError || carbs.isError || fat.isError || protein.isError ->
+                        energy.isError || (carbs.isError && !carbs.valueIsZero) ||
+                                (fat.isError && !fat.valueIsZero) || (protein.isError && !protein.valueIsZero) ->
                             showErrorMessage(R.string.message_correct_error_and_save_again)
 
                         else ->

@@ -31,6 +31,7 @@ import java.text.ParseException
 data class FloatFieldState(
     val value: String = "",
     val isError: Boolean = isFloatFieldError(value),
+    val valueIsZero: Boolean = isFloatFieldValueEqZero(value)   // FIXME ugly hack, refactor it later
 ) : Parcelable {
 
     constructor(value: Float?, minimumFractionDigits: Int = 0) : this(printToForm(value, minimumFractionDigits))
@@ -61,6 +62,14 @@ data class FloatFieldState(
                 parseFloat(value) <= 0
             } catch (ex: ParseException) {
                 true
+            }
+        }
+
+        private fun isFloatFieldValueEqZero(src: String): Boolean {
+            return try {
+                parseFloat(src.trim()) == 0f
+            } catch (ex: ParseException) {
+                false
             }
         }
 
