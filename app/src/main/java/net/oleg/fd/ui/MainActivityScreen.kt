@@ -114,8 +114,8 @@ fun MainActivityScreen(
             floatingActionButton = {
                 if (showFab) {
                     ExtendedFloatingActionButton(
-                        icon = { Icon(Icons.Filled.Camera, stringResource(R.string.nav_bar_camera_short)) },
-                        text = { Text(stringResource(R.string.nav_bar_camera_short)) },
+                        icon = { Icon(Icons.Filled.Camera, stringResource(R.string.nav_bar_camera)) },
+                        text = { Text(stringResource(R.string.nav_bar_camera)) },
                         onClick = { navController.navigate(Screen.Camera) }
                     )
                 }
@@ -132,7 +132,7 @@ fun MainActivityScreen(
                     AddToDailyListScreen(navController, viewModel)
                 }
                 composable(Screen.EditFood.route) {
-                    setShowFab(true)
+                    setShowFab(false)
                     EditFoodForm(navController, viewModel)
                 }
                 composable(Screen.Camera.route) {
@@ -141,7 +141,7 @@ fun MainActivityScreen(
                 }
                 composable(Screen.Settings.route) {
                     setShowFab(true)
-                    Settings(navController, viewModel)
+                    Settings(viewModel)
                 }
             }
         }

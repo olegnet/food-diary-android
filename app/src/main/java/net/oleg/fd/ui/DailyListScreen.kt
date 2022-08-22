@@ -85,16 +85,14 @@ fun DailyListScreen(
             val anyFood by viewModel.getAnyFoodItem().observeAsState()
 
             NoFoodColumn(
-                viewModel = viewModel,
-                message = R.string.message_no_food_added_yet,
-                onAddButtonClick = {
-                    if (anyFood == null) {
-                        navController.navigate(Screen.EditFood)
-                    } else {
-                        navController.navigate(Screen.AddToDailyList)
-                    }
+                message = R.string.message_no_food_added_yet
+            ) {
+                if (anyFood == null) {
+                    navController.navigate(Screen.EditFood)
+                } else {
+                    navController.navigate(Screen.AddToDailyList)
                 }
-            )
+            }
         } else {
             DailyListScreenBody(viewModel)
         }

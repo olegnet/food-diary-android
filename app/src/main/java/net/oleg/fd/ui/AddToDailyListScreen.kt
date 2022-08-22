@@ -184,15 +184,13 @@ fun AddToDailyListScreen(
 
         if (lazyPagingItems.itemCount < 1) {
             NoFoodColumn(
-                viewModel = viewModel,
                 message = if (foodDataRequest?.barcode != null)
                     R.string.message_food_with_barcode_not_found
                 else
-                    R.string.message_no_food_added_yet,
-                onAddButtonClick = {
-                    navController.navigate(Screen.EditFood)
-                }
-            )
+                    R.string.message_no_food_added_yet
+            ) {
+                navController.navigate(Screen.EditFood)
+            }
         } else {
             LazyColumn(
                 modifier = Modifier
