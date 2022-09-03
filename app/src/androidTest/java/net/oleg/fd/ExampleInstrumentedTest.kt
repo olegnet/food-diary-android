@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("net.oleg.fd", appContext.packageName)
+        assertEquals(if (BuildConfig.DEBUG) "net.oleg.fd.debug" else "net.oleg.fd", appContext.packageName)
     }
 }
