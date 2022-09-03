@@ -23,8 +23,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 19
-        versionName = "1.13"
+        versionCode = 20
+        versionName = "1.14"
 
         resourceConfigurations.addAll(listOf("en", "ru"))
 
@@ -115,16 +115,16 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.3.0-alpha03"
-    val cameraxVersion = "1.2.0-alpha04"
+    val composeVersion = "1.3.0-beta01"
+    val cameraxVersion = "1.2.0-beta01"
     val navigationVersion = "2.5.1"
-    val roomVersion = "2.5.0-alpha02"
-    val material3Version = "1.0.0-alpha16"
-    val lifecycleVersion = "2.5.1"
+    val roomVersion = "2.5.0-alpha03"
+    val material3Version = "1.0.0-beta01"
+    val lifecycleVersion = "2.6.0-alpha01"
 
-    implementation("androidx.core:core-ktx:1.9.0-beta01")
-    implementation("androidx.activity:activity-compose:1.6.0-beta01")
-    implementation("com.google.android.material:material:1.7.0-beta01")
+    implementation("androidx.core:core-ktx:1.9.0-rc01")
+    implementation("androidx.activity:activity-compose:1.6.0-rc01")
+    implementation("com.google.android.material:material:1.8.0-alpha01")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
@@ -164,7 +164,7 @@ dependencies {
     implementation("androidx.camera:camera-view:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("com.google.mlkit:barcode-scanning:17.0.2")
-    implementation("com.google.accompanist:accompanist-permissions:0.25.1")
+    implementation("com.google.accompanist:accompanist-permissions:0.26.2-beta")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 
