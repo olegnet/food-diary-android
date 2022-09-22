@@ -115,12 +115,12 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.3.0-beta01"
-    val cameraxVersion = "1.2.0-beta01"
-    val navigationVersion = "2.5.1"
+    val composeVersion = "1.3.0-beta03"
+    val cameraxVersion = "1.2.0-beta02"
+    val navigationVersion = "2.5.2"
     val roomVersion = "2.5.0-alpha03"
-    val material3Version = "1.0.0-beta01"
-    val lifecycleVersion = "2.6.0-alpha01"
+    val material3Version = "1.0.0-beta03"
+    val lifecycleVersion = "2.6.0-alpha02"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.activity:activity-compose:1.6.0")
@@ -145,7 +145,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
 
-    implementation(platform("com.google.firebase:firebase-bom:30.3.1"))
+    implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-perf-ktx")
@@ -164,7 +164,7 @@ dependencies {
     implementation("androidx.camera:camera-view:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("com.google.mlkit:barcode-scanning:17.0.2")
-    implementation("com.google.accompanist:accompanist-permissions:0.26.2-beta")
+    implementation("com.google.accompanist:accompanist-permissions:0.26.3-beta")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 
