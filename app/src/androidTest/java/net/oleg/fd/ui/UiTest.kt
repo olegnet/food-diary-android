@@ -63,7 +63,6 @@ class UiTest {
                         .onFirst()
                         .assertExists()
                 }
-                Screen.Barcode -> throw RuntimeException()
                 Screen.Camera -> throw RuntimeException()
             }
         }

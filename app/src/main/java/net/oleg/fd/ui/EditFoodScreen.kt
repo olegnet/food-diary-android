@@ -291,10 +291,7 @@ fun EditFoodForm(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(paddingValues = buttonPaddings),
-                onClick = {
-                    viewModel.setCameraReturnPath(Screen.EditFood)
-                    navController.navigate(Screen.Camera)
-                }
+                onClick = { navController.navigate(Screen.Camera) }
             ) {
                 Icon(
                     modifier = Modifier.padding(end = 4.dp),

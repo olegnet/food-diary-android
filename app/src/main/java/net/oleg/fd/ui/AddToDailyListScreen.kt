@@ -170,10 +170,7 @@ fun AddToDailyListScreen(
                 modifier = Modifier
                     .wrapContentWidth()
                     .padding(start = 4.dp),
-                onClick = {
-                    viewModel.setCameraReturnPath(Screen.AddToDailyList)
-                    navController.navigate(Screen.Camera)
-                }
+                onClick = { navController.navigate(Screen.Camera) }
             ) {
                 Icon(
                     imageVector = Icons.Filled.Camera,

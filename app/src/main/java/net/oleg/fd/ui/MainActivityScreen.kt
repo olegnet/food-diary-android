@@ -53,9 +53,6 @@ sealed class Screen(val route: String, val icon: ImageVector, @StringRes val tex
     object EditFood : Screen("add-or-edit-food", Icons.Filled.Edit, R.string.nav_bar_edit_food)
     object Camera : Screen("camera", Icons.Filled.Camera, R.string.nav_bar_camera_short)
     object Settings : Screen("settings", Icons.Filled.Settings, R.string.nav_bar_settings)
-
-    // not a real screen. used in viewmodel.cameraReturnPath
-    object Barcode : Screen("barcode", Icons.Filled.Camera, R.string.nav_bar_camera_short)
 }
 
 fun NavHostController.navigate(screen: Screen) {
@@ -97,11 +94,14 @@ fun MainActivityScreen(
                             ) },
                             selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                             onClick = {
-                                if (screen == Screen.Camera) {
-                                    // if current screen is the camera screen, set return path to Barcode
-                                    // as a flag to process it later when barcode is ready
-                                    viewModel.setCameraReturnPath(Screen.Barcode)
-                                }
+                                // TODO use 'null' for click from the fab on AddToDailyList screen (?)
+                                viewModel.setCameraReturnPath(
+                                    when (screen) {
+                                        Screen.AddToDailyList -> screen
+                                        Screen.EditFood -> screen
+                                        else -> null
+                                    }
+                                )
                                 // looks a bit better and fixes bug with the camera screen
                                 if (currentDestination?.route != screen.route) {
                                     navController.navigate(screen)

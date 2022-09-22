@@ -147,11 +147,10 @@ private fun bindView(
         Timber.d("barcode: $barcode")
 
         // FIXME add tests for navigation
-        // FIXME use navController instead of cameraReturnPath?
         val coroutineScope = lifecycleOwner.lifecycle.coroutineScope
         coroutineScope.launch {
             viewModel.setFoodBarcodeAndClear(barcode)
-            val screen = viewModel.cameraReturnPath.value ?: Screen.EditFood
+            val screen = viewModel.cameraReturnPath.value
             when (screen) {
                 Screen.AddToDailyList -> {
                     viewModel.setSelectedFoodItem(null)
@@ -159,8 +158,8 @@ private fun bindView(
                     viewModel.setSearchBarcode(barcode)
                     navController.navigate(screen)
                 }
-                Screen.Barcode -> {
-                    // not a real return path. using it as a flag to return to one of the two screens
+                null -> {
+                    // no return path. will return to one of the two screens
                     if (viewModel.getFood(barcode) != null) {
                         viewModel.setSelectedFoodItem(null)
                         viewModel.setSearchString(null)
