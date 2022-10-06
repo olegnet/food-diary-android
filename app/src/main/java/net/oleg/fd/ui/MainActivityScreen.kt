@@ -94,7 +94,7 @@ fun MainActivityScreen(
                             ) },
                             selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                             onClick = {
-                                // TODO use 'null' for click from the fab on AddToDailyList screen (?)
+                                // TODO set 'null' for click from the fab on AddToDailyList screen (?)
                                 viewModel.setCameraReturnPath(
                                     when (screen) {
                                         Screen.AddToDailyList -> screen
