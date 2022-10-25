@@ -162,7 +162,7 @@ fun CameraScreen(navController: NavHostController, viewModel: FoodViewModel) {
     }
 }
 
-@Preview(showBackground = true)
+@LocalesPreview
 @Composable
 fun MainActivityScreenPreview() {
     MainActivityScreen(viewModel = FoodViewModelMock)

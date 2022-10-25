@@ -314,7 +314,7 @@ private fun DailyListScreenBody(
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview(showBackground = true)
+@LocalesPreview
 @Composable
 fun DailyListScreenDefaultPreview() {
     FoodDiaryTheme {

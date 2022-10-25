@@ -181,7 +181,7 @@ private fun bindView(
     cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, preview, imageAnalyzer)
 }
 
-@Preview(showBackground = true)
+@LocalesPreview
 @Composable
 fun CameraPreviewDefaultPreview() {
     CameraPreview(NavHostController(MainActivity()), FoodViewModelMock)

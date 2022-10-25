@@ -126,7 +126,7 @@ fun ImportNutritionData(
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview(showBackground = true)
+@LocalesPreview
 @Composable
 fun SettingsDefaultPreview() {
     FoodDiaryTheme {

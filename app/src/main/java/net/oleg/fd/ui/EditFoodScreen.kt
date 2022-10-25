@@ -379,7 +379,7 @@ fun EditFoodForm(
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview(showBackground = true)
+@LocalesPreview
 @Composable
 fun FoodFormDefaultPreview() {
     FoodDiaryTheme {

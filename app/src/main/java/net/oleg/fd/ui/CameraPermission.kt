@@ -77,7 +77,7 @@ fun CameraAskForPermission(
     }
 }
 
-@Preview(showBackground = true)
+@LocalesPreview
 @Composable
 fun CameraPermissionDeniedPreview() {
     CameraAskForPermission(object : PermissionState {
@@ -90,7 +90,7 @@ fun CameraPermissionDeniedPreview() {
     })
 }
 
-@Preview(showBackground = true)
+@LocalesPreview
 @Composable
 fun CameraPermissionShouldShowRationalePreview() {
     CameraAskForPermission(object : PermissionState {

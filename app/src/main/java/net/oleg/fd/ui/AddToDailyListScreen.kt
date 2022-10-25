@@ -295,7 +295,7 @@ private fun makeDate(selectedDate: Calendar?): Date {
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview(showBackground = true)
+@LocalesPreview
 @Composable
 fun AddToDailyListScreenPreview() {
     FoodDiaryTheme {
