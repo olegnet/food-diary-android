@@ -51,8 +51,6 @@ class UiTest {
                 Screen.AddToDailyList -> {
                     composeTestRule.onNodeWithText("Search")
                         .assertExists()
-                    composeTestRule.onNodeWithText("You can add new food")
-                        .assertExists()
                 }
                 Screen.EditFood -> {
                     composeTestRule.onNodeWithText("New food")
