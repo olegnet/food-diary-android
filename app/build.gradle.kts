@@ -10,8 +10,7 @@ plugins {
     kotlin("plugin.serialization")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
-    // https://github.com/firebase/firebase-android-sdk/issues/4220
-//    id("com.google.firebase.firebase-perf")
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
@@ -127,8 +126,8 @@ dependencies {
     androidTestImplementation(composeBom)
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.activity:activity-compose:1.6.0")
-    implementation("com.google.android.material:material:1.8.0-alpha01")
+    implementation("androidx.activity:activity-compose:1.6.1")
+    implementation("com.google.android.material:material:1.8.0-rc01")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
@@ -161,13 +160,13 @@ dependencies {
     implementation("androidx.room:room-paging:$roomVersion")
 
     implementation("androidx.paging:paging-common-ktx:3.1.1")
-    implementation("androidx.paging:paging-compose:1.0.0-alpha16")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha17")
 
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
-    implementation("com.google.mlkit:barcode-scanning:17.0.2")
+    implementation("com.google.mlkit:barcode-scanning:17.0.3")
     implementation("com.google.accompanist:accompanist-permissions:0.26.4-beta")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
@@ -182,7 +181,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.room:room-testing:$roomVersion")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    testImplementation("androidx.test:core-ktx:1.4.0")
+    testImplementation("androidx.test:core-ktx:1.5.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.mockito:mockito-core:4.5.1")
     testImplementation("org.hamcrest:hamcrest-library:2.2")
