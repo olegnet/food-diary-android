@@ -187,8 +187,8 @@ dependencies {
     testImplementation("org.hamcrest:hamcrest-library:2.2")
     testImplementation("org.robolectric:robolectric:4.8")
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0") {
         exclude(module = "protobuf-lite")
     }
