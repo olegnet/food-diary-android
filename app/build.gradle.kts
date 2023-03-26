@@ -23,8 +23,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 23
-        versionName = "1.17"
+        versionCode = 24
+        versionName = "1.18"
 
         resourceConfigurations.addAll(listOf("en", "ru"))
 
@@ -79,12 +79,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
         allWarningsAsErrors = true
         freeCompilerArgs = freeCompilerArgs + ("-opt-in=kotlin.RequiresOptIn," +
                 "com.google.accompanist.permissions.ExperimentalPermissionsApi," +
@@ -97,7 +97,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.4"
     }
 
     packagingOptions {
@@ -115,19 +115,19 @@ android {
 }
 
 dependencies {
-    val cameraxVersion = "1.2.0-beta02"
-    val navigationVersion = "2.5.2"
-    val roomVersion = "2.5.0-beta01"
-    val material3Version = "1.0.0-rc01"
-    val lifecycleVersion = "2.6.0-alpha02"
+    val cameraxVersion = "1.3.0-alpha05"
+    val navigationVersion = "2.5.3"
+    val roomVersion = "2.6.0-alpha01"
+    val material3Version = "1.1.0-beta01"
+    val lifecycleVersion = "2.6.1"
 
-    val composeBom = platform("androidx.compose:compose-bom:2022.10.00")
+    val composeBom = platform("androidx.compose:compose-bom:2023.01.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.activity:activity-compose:1.6.1")
-    implementation("com.google.android.material:material:1.8.0-rc01")
+    implementation("androidx.activity:activity-compose:1.7.0")
+    implementation("com.google.android.material:material:1.9.0-beta01")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
@@ -160,13 +160,13 @@ dependencies {
     implementation("androidx.room:room-paging:$roomVersion")
 
     implementation("androidx.paging:paging-common-ktx:3.1.1")
-    implementation("androidx.paging:paging-compose:1.0.0-alpha17")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha18")
 
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
-    implementation("com.google.mlkit:barcode-scanning:17.0.3")
+    implementation("com.google.mlkit:barcode-scanning:17.1.0")
     implementation("com.google.accompanist:accompanist-permissions:0.26.4-beta")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
@@ -182,7 +182,7 @@ dependencies {
     testImplementation("androidx.room:room-testing:$roomVersion")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("androidx.test:core-ktx:1.5.0")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("org.mockito:mockito-core:4.5.1")
     testImplementation("org.hamcrest:hamcrest-library:2.2")
     testImplementation("org.robolectric:robolectric:4.8")
