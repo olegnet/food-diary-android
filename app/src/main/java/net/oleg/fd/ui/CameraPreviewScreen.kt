@@ -117,6 +117,7 @@ fun CameraPreview(
     }
 }
 
+@Suppress("DEPRECATION")    // FIXME
 private fun bindView(
     navController: NavHostController,
     viewModel: FoodViewModel,

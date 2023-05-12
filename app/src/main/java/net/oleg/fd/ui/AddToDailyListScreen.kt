@@ -45,13 +45,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.Pager
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemsIndexed
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import net.oleg.fd.MainActivity
 import net.oleg.fd.R
 import net.oleg.fd.room.FoodDiaryItem
@@ -197,7 +197,12 @@ fun AddToDailyListScreen(
             ) {
                 lazyColumnProgressItem(isInLoadingState = lazyPagingItems.loadState.refresh == LoadState.Loading)
 
-                itemsIndexed(lazyPagingItems) { _, foodItem ->
+                items(
+                    count = lazyPagingItems.itemCount,
+                    key = lazyPagingItems.itemKey(),
+                    contentType = lazyPagingItems.itemContentType()
+                ) { index ->
+                    val foodItem = lazyPagingItems[index]
                     // TODO foodItem can be null if scrolling is too fast
                     val thisItemIsSelected = foodItem != null && foodItem == selectedFoodItem
 
