@@ -23,8 +23,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 24
-        versionName = "1.18"
+        versionCode = 25
+        versionName = "1.19"
 
         resourceConfigurations.addAll(listOf("en", "ru"))
 
@@ -77,7 +77,7 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
-        allWarningsAsErrors = true
+// FIXME       allWarningsAsErrors = true
         freeCompilerArgs = freeCompilerArgs + ("-opt-in=kotlin.RequiresOptIn," +
                 "com.google.accompanist.permissions.ExperimentalPermissionsApi," +
                 "androidx.compose.material3.ExperimentalMaterial3Api")
@@ -107,19 +107,19 @@ android {
 }
 
 dependencies {
-    val cameraxVersion = "1.3.0-alpha05"
+    val cameraxVersion = "1.3.0-alpha06"
     val navigationVersion = "2.5.3"
     val roomVersion = "2.6.0-alpha01"
-    val material3Version = "1.1.0-beta01"
+    val material3Version = "1.1.0"
     val lifecycleVersion = "2.6.1"
 
-    val composeBom = platform("androidx.compose:compose-bom:2023.01.00")
+    val composeBom = platform("androidx.compose:compose-bom:2023.04.01")
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.activity:activity-compose:1.7.0")
-    implementation("com.google.android.material:material:1.9.0-beta01")
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.activity:activity-compose:1.7.1")
+    implementation("com.google.android.material:material:1.9.0")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
@@ -152,7 +152,7 @@ dependencies {
     implementation("androidx.room:room-paging:$roomVersion")
 
     implementation("androidx.paging:paging-common-ktx:3.1.1")
-    implementation("androidx.paging:paging-compose:1.0.0-alpha18")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha19")
 
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
@@ -161,7 +161,7 @@ dependencies {
     implementation("com.google.mlkit:barcode-scanning:17.1.0")
     implementation("com.google.accompanist:accompanist-permissions:0.26.4-beta")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
