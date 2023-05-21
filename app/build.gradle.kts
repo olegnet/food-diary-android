@@ -23,8 +23,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 25
-        versionName = "1.19"
+        versionCode = 26
+        versionName = "1.20"
 
         resourceConfigurations.addAll(listOf("en", "ru"))
 
