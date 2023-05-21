@@ -158,8 +158,9 @@ dependencies {
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
+
     implementation("com.google.mlkit:barcode-scanning:17.1.0")
-    implementation("com.google.accompanist:accompanist-permissions:0.26.4-beta")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
