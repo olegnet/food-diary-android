@@ -22,6 +22,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.google.android.gms.tasks.TaskExecutors
 import com.google.mlkit.vision.barcode.BarcodeScanning
+import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
 import timber.log.Timber
 
@@ -58,10 +59,13 @@ class BarCodeAnalyzer(
                 .addOnSuccessListener(executor) {
                     // Timber.d("latency: ${SystemClock.elapsedRealtime() - startTime}")
                     val barCodeList = barCodeTaskList.result
-                    if (barCodeList.size > 0) {
-                        val code = barCodeList[0].displayValue
-                        // Timber.d("code: $code")
-                        listener(code.toString())
+                    for (barCode in barCodeList) {
+                        val code = barCode.displayValue
+                        val valueType = barCode.valueType
+                        // Timber.d("type='$valueType' code='$code'")
+                        if (valueType == Barcode.TYPE_PRODUCT) {
+                            listener(code.toString())
+                        }
                     }
                     imageProxy.close()
                 }
