@@ -23,8 +23,8 @@ android {
         minSdk = 27
         targetSdk = 33
 
-        versionCode = 26
-        versionName = "1.20"
+        versionCode = 27
+        versionName = "1.21"
 
         resourceConfigurations.addAll(listOf("en", "ru"))
 
@@ -107,8 +107,8 @@ android {
 }
 
 dependencies {
-    val cameraxVersion = "1.3.0-alpha06"
-    val navigationVersion = "2.5.3"
+    val cameraxVersion = "1.3.0-alpha07"
+    val navigationVersion = "2.6.0"
     val roomVersion = "2.6.0-alpha01"
     val material3Version = "1.1.0"
     val lifecycleVersion = "2.6.1"
@@ -118,7 +118,7 @@ dependencies {
     androidTestImplementation(composeBom)
 
     implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.activity:activity-compose:1.7.1")
+    implementation("androidx.activity:activity-compose:1.7.2")
     implementation("com.google.android.material:material:1.9.0")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
@@ -152,7 +152,7 @@ dependencies {
     implementation("androidx.room:room-paging:$roomVersion")
 
     implementation("androidx.paging:paging-common-ktx:3.1.1")
-    implementation("androidx.paging:paging-compose:1.0.0-alpha19")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha20")
 
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
