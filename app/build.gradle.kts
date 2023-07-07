@@ -89,7 +89,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
+        kotlinCompilerExtensionVersion = "1.4.8"
     }
 
     packagingOptions {
@@ -107,10 +107,10 @@ android {
 }
 
 dependencies {
-    val cameraxVersion = "1.3.0-alpha07"
+    val cameraxVersion = "1.3.0-beta01"
     val navigationVersion = "2.6.0"
-    val roomVersion = "2.6.0-alpha01"
-    val material3Version = "1.1.0"
+    val roomVersion = "2.6.0-alpha02"
+    val material3Version = "1.1.1"
     val lifecycleVersion = "2.6.1"
 
     val composeBom = platform("androidx.compose:compose-bom:2023.04.01")

@@ -12,12 +12,13 @@ buildscript {
 }
 
 plugins {
-    id("com.android.application") version "8.2.0-alpha08" apply false
-    id("com.android.library") version "8.2.0-alpha08" apply false
+    id("com.android.application") version "8.2.0-alpha11" apply false
+    id("com.android.library") version "8.2.0-alpha11" apply false
 
     // When changing Kotlin version, also check 'kotlinCompilerExtensionVersion' in app/build.gradle.kts
     // https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-    id("org.jetbrains.kotlin.android") version "1.8.21" apply false
-    kotlin("plugin.serialization") version "1.8.21" apply false
-    id("com.google.devtools.ksp") version "1.8.21-1.0.11" apply false
+    id("org.jetbrains.kotlin.android") version "1.8.22" apply false
+    kotlin("plugin.serialization") version "1.8.22" apply false
+    // https://github.com/google/ksp/releases
+    id("com.google.devtools.ksp") version "1.8.22-1.0.11" apply false
 }
