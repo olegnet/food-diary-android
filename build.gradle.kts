@@ -6,14 +6,14 @@ buildscript {
     }
     dependencies {
         classpath("com.google.gms:google-services:4.3.15")
-        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.6")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.7")
         classpath("com.google.firebase:perf-plugin:1.4.2")
     }
 }
 
 plugins {
-    id("com.android.application") version "8.2.0-alpha11" apply false
-    id("com.android.library") version "8.2.0-alpha11" apply false
+    id("com.android.application") version "8.2.0-alpha12" apply false
+    id("com.android.library") version "8.2.0-alpha12" apply false
 
     // When changing Kotlin version, also check 'kotlinCompilerExtensionVersion' in app/build.gradle.kts
     // https://developer.android.com/jetpack/androidx/releases/compose-kotlin
