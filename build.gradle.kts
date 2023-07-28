@@ -1,3 +1,4 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
 buildscript {
     repositories {
         gradlePluginPortal()
@@ -5,20 +6,17 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.google.gms:google-services:4.3.15")
-        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.7")
-        classpath("com.google.firebase:perf-plugin:1.4.2")
+        classpath(libs.google.services)
+        classpath(libs.firebase.crashlytics.gradle)
+        classpath(libs.firebase.perf.plugin)
     }
 }
 
 plugins {
-    id("com.android.application") version "8.2.0-alpha14" apply false
-    id("com.android.library") version "8.2.0-alpha14" apply false
-
-    // When changing Kotlin version, also check 'kotlinCompilerExtensionVersion' in app/build.gradle.kts
-    // https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-    id("org.jetbrains.kotlin.android") version "1.8.22" apply false
-    kotlin("plugin.serialization") version "1.8.22" apply false
-    // https://github.com/google/ksp/releases
-    id("com.google.devtools.ksp") version "1.8.22-1.0.11" apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.ksp) apply false
 }
+true

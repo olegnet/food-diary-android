@@ -1,13 +1,13 @@
-@file:Suppress("UnstableApiUsage")
+@file:Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
 
 import java.util.*
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
     id("kotlin-parcelize")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.serialization)
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
@@ -89,7 +89,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.8"
+        kotlinCompilerExtensionVersion = libs.versions.kotlin.compiler.extension.get()
     }
 
     packagingOptions {
@@ -107,86 +107,80 @@ android {
 }
 
 dependencies {
-    val cameraxVersion = "1.3.0-beta02"
-    val navigationVersion = "2.6.0"
-    val roomVersion = "2.6.0-alpha02"
-    val material3Version = "1.1.1"
-    val lifecycleVersion = "2.6.1"
-
-    val composeBom = platform("androidx.compose:compose-bom:2023.04.01")
+    val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation(libs.core.ktx)
+    implementation(libs.activity.compose)
 
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.livedata.ktx)
 
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.foundation:foundation")
-    implementation("androidx.compose.runtime:runtime-livedata")
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.material:material-icons-core")
-    implementation("androidx.compose.material:material-icons-extended")
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 
-    implementation("androidx.compose.material3:material3:$material3Version")
-    implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.runtime.livedata)
 
-    implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
-    implementation("androidx.navigation:navigation-compose:$navigationVersion")
+    implementation(libs.material)
+    implementation(libs.material.icons.core)
+    implementation(libs.material.icons.extended)
 
-    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-crashlytics-ktx")
-    implementation("com.google.firebase:firebase-perf-ktx")
+    implementation(libs.material3)
+    implementation(libs.material3.winsize)
 
-    implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.room:room-paging:$roomVersion")
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.navigation.compose)
+    androidTestImplementation(libs.navigation.testing)
 
-    implementation("androidx.paging:paging-common-ktx:3.2.0")
-    implementation("androidx.paging:paging-compose:3.2.0")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics.ktx)
+    implementation(libs.firebase.crashlytics.ktx)
+    implementation(libs.firebase.perf.ktx)
 
-    implementation("androidx.camera:camera-core:$cameraxVersion")
-    implementation("androidx.camera:camera-camera2:$cameraxVersion")
-    implementation("androidx.camera:camera-view:$cameraxVersion")
-    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
-    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+    implementation(libs.room.paging)
+    testImplementation(libs.room.testing)
 
-    implementation("com.google.mlkit:barcode-scanning:17.1.0")
+    implementation(libs.paging.common.ktx)
+    implementation(libs.paging.compose)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation(libs.camera.core)
+    implementation(libs.camera.camera2)
+    implementation(libs.camera.view)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.accompanist.permissions)
+    implementation(libs.mlkit.barcode.scanning)
 
-    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.kotlinx.serialization.json)
 
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation (libs.datastore.preferences)
 
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation(libs.timber)
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.room:room-testing:$roomVersion")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    testImplementation("androidx.test:core-ktx:1.5.0")
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
-    testImplementation("org.mockito:mockito-core:4.5.1")
-    testImplementation("org.hamcrest:hamcrest-library:2.2")
-    testImplementation("org.robolectric:robolectric:4.8")
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.core.ktx.test)
+    testImplementation(libs.core.testing)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.hamcrest.library)
+    testImplementation(libs.robolectric)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0") {
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.espresso.contrib) {
         exclude(module = "protobuf-lite")
     }
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    androidTestImplementation("androidx.navigation:navigation-testing:$navigationVersion")
+    androidTestImplementation(libs.ui.test.junit4)
 }
 
 ksp {
