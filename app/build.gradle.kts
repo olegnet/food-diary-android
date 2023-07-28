@@ -107,7 +107,7 @@ android {
 }
 
 dependencies {
-    val cameraxVersion = "1.3.0-beta01"
+    val cameraxVersion = "1.3.0-beta02"
     val navigationVersion = "2.6.0"
     val roomVersion = "2.6.0-alpha02"
     val material3Version = "1.1.1"
@@ -151,8 +151,8 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     implementation("androidx.room:room-paging:$roomVersion")
 
-    implementation("androidx.paging:paging-common-ktx:3.1.1")
-    implementation("androidx.paging:paging-compose:1.0.0-alpha20")
+    implementation("androidx.paging:paging-common-ktx:3.2.0")
+    implementation("androidx.paging:paging-compose:3.2.0")
 
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")

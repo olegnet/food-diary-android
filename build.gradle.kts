@@ -12,8 +12,8 @@ buildscript {
 }
 
 plugins {
-    id("com.android.application") version "8.2.0-alpha12" apply false
-    id("com.android.library") version "8.2.0-alpha12" apply false
+    id("com.android.application") version "8.2.0-alpha14" apply false
+    id("com.android.library") version "8.2.0-alpha14" apply false
 
     // When changing Kotlin version, also check 'kotlinCompilerExtensionVersion' in app/build.gradle.kts
     // https://developer.android.com/jetpack/androidx/releases/compose-kotlin
