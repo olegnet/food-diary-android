@@ -34,9 +34,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import net.oleg.fd.BuildConfig
 import net.oleg.fd.R
 import net.oleg.fd.ui.theme.FoodDiaryTheme
 import net.oleg.fd.ui.theme.invertedButtonColors
@@ -65,6 +65,21 @@ fun Settings(
             Text(
                 text = stringResource(id = R.string.nav_bar_settings),
                 style = typography.headlineSmall
+            )
+
+            Text(
+                modifier = Modifier
+                    .padding(top = 8.dp),
+                text = stringResource(id = R.string.app_name),
+                style = typography.bodyMedium
+            )
+            Text(
+                text = stringResource(
+                    id = R.string.settings_version,
+                    BuildConfig.VERSION_NAME,
+                    BuildConfig.VERSION_CODE
+                ),
+                style = typography.bodyMedium
             )
         }
 

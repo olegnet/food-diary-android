@@ -12,6 +12,7 @@
     <string name="camera_permission_rationale">The camera is important for this app to scan barcodes. Please grant the permission</string>
     <string name="ask_for_camera_permission">Camera permission is required to scan barcodes. Please grant the permission</string>
     <string name="button_request_permission">Request permission</string>
+    <string name="settings_version">version %s (%s)</string>
 
     <string name="header_today">Today</string>
     <string name="header_yesterday">Yesterday</string>

@@ -13,6 +13,7 @@
     <string name="ask_for_camera_permission">Разрешение на использование камеры нужно для того, чтобы можно было
         распознавать баркоды на упаковке еды. Пожалуйста, разрешите приложению доступ к камере</string>
     <string name="button_request_permission">Запросить разрешение</string>
+    <string name="settings_version">версия %s (%s)</string>
 
     <string name="header_today">Сегодня</string>
     <string name="header_yesterday">Вчера</string>

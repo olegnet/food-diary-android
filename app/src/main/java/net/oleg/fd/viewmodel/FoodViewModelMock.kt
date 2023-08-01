@@ -137,7 +137,6 @@ object FoodViewModelMock : FoodViewModel {
     override fun updateFoodDiaryItem(foodDiaryItem: FoodDiaryItem) = Job()
     override fun deleteFoodDiaryItem(foodDiaryItem: FoodDiaryItem) = Job()
 
-    // FIXME show it in preview
     private fun mockFoodItemsList(): List<FoodItem> =
         mutableListOf<FoodItem>().apply {
             add(selectedFoodItem.value!!)
