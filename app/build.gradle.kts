@@ -78,7 +78,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
 
-        // FIXME
 //        allWarningsAsErrors = true
 
         freeCompilerArgs = freeCompilerArgs + ("-opt-in=kotlin.RequiresOptIn," +
