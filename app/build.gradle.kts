@@ -23,8 +23,8 @@ android {
         minSdk = 27
         targetSdk = 34
 
-        versionCode = 29
-        versionName = "1.23"
+        versionCode = 30
+        versionName = "1.24"
 
         resourceConfigurations.addAll(listOf("en", "ru"))
 
@@ -71,12 +71,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = JavaVersion.VERSION_19.toString()
 
 //        allWarningsAsErrors = true
 
@@ -165,7 +165,7 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
 
-    implementation (libs.datastore.preferences)
+    implementation(libs.datastore.preferences)
 
     implementation(libs.timber)
 
