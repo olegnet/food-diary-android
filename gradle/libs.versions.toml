@@ -1,23 +1,23 @@
 [versions]
-agp = "8.5.0-alpha01"
+agp = "8.5.0-alpha06"
 kotlin = "1.9.23"                       # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-kotlin-compiler-extension = "1.5.11"    # used in app/build.gradle.kts; see line above for the version
-ksp = "1.9.23-1.0.19"                   # https://github.com/google/ksp/releases
+kotlin-compiler-extension = "1.5.12"    # used in app/build.gradle.kts; see line above for the version
+ksp = "1.9.23-1.0.20"                   # https://github.com/google/ksp/releases
 
-core-ktx = "1.12.0"
+core-ktx = "1.13.0"
 lifecycle = "2.7.0"
-activity-compose = "1.8.2"
-compose-bom = "2024.03.00"
-camerax = "1.3.2"
+activity-compose = "1.9.0"
+compose-bom = "2024.04.01"
+camerax = "1.3.3"
 navigation = "2.7.7"
 room = "2.6.1"
 paging = "3.2.1"
-firebase-bom = "32.7.4"
+firebase-bom = "32.8.1"
 
 accompanist-permissions = "0.34.0"
 mlkit-barcode-scanning = "17.2.0"
 kotlinx-serialization-json = "1.6.3"
-datastore-preferences = "1.0.0"
+datastore-preferences = "1.1.0"
 timber = "5.0.1"
 
 junit = "4.13.2"
