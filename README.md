@@ -2,10 +2,8 @@
 ## This is an another Food Diary / Calories Counter application
 
 Designed to be fast and simple in architecture and UX. 
-The application is open source and without any hidden functionality.
-We use Google Crashlytics to improve application quality.
 
-You can try it here https://play.google.com/apps/testing/net.oleg.fd
+You need to put your own google-services.json to [app](app) folder.
 
 Enjoy
 
